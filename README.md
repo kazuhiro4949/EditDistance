@@ -99,19 +99,19 @@ Import EditDistance
 
 # Usage
 ## Calculationg diff between two arrays
-### prepare two arrays.
+### 1. prepare two arrays.
 ```swift
 let current = ["Francis Elton", "Woodruff Chester", "Stanton Denholm"]
 let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby"]
 ```
 
-### 1. calling diff from Array makes EditDistanceProxy\<T> instance.
+### 2. calling diff from Array makes EditDistanceProxy\<T> instance.
 
 ```swift
 let proxy = current.diff // => EditDistanceProxy<String>
 ```
 
-### 2. the instance has compare(with:) to calculate diff with next array.
+### 3. the instance has compare(with:) to calculate diff with next array.
 ```swift
 let script = proxy.compare(with: next) // => EditScript<String>
 ```
