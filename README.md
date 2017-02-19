@@ -101,7 +101,7 @@ Import EditDistance
 ## Calculationg diff between two arrays
 ```swift
 let current = ["Francis Elton", "Woodruff Chester", "Stanton Denholm"]
-let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"]
+let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby"]
 current.diff.compare(with: next)
 ```
 
