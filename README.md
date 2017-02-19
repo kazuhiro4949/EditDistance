@@ -12,7 +12,7 @@ dataSource.remove(at: 2)
 dataSource.insert("Woodruff Chester", at: 1)
 dataSource.insert("Eduard Colby", at: 3)
 
-// You have to update UITableView according to array's updates.
+// You have to update UITableView according to array's diff.
 tableView.beginUpdates()
 tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
 tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, section: 0)], with: .fade)
@@ -29,7 +29,7 @@ nextDataSource.remove(at: 2)
 nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
 
-// You don't need to write insert and delete.
+// You don't need to write insertion and deletion.
 let scripts = dataSource.diff.compare(with: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(with: scripts) 
