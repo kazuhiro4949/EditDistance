@@ -99,6 +99,7 @@ Import EditDistance
 
 # Usage
 ## Calculationg diff between two arrays
+### prepare two arrays.
 ```swift
 let current = ["Francis Elton", "Woodruff Chester", "Stanton Denholm"]
 let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby"]
