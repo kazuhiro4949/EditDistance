@@ -15,6 +15,10 @@
 		6EBF3E491E5854FD0025443A /* EditDistanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E481E5854FD0025443A /* EditDistanceProtocol.swift */; };
 		6EBF3E4B1E58552A0025443A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E4A1E58552A0025443A /* Array.swift */; };
 		6EBF3E4D1E58553C0025443A /* Wu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E4C1E58553C0025443A /* Wu.swift */; };
+		6EBF3E911E59C2FB0025443A /* EditDistanceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E901E59C2FB0025443A /* EditDistanceProxy.swift */; };
+		6EBF3E931E59C3640025443A /* EditScriptConverterProxy+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E921E59C3640025443A /* EditScriptConverterProxy+UITableView.swift */; };
+		6EBF3E951E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E941E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift */; };
+		6EBF3E971E59C3BE0025443A /* EditScriptConverterProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E961E59C3BE0025443A /* EditScriptConverterProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,10 @@
 		6EBF3E481E5854FD0025443A /* EditDistanceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistanceProtocol.swift; sourceTree = "<group>"; };
 		6EBF3E4A1E58552A0025443A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		6EBF3E4C1E58553C0025443A /* Wu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wu.swift; sourceTree = "<group>"; };
+		6EBF3E901E59C2FB0025443A /* EditDistanceProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistanceProxy.swift; sourceTree = "<group>"; };
+		6EBF3E921E59C3640025443A /* EditScriptConverterProxy+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditScriptConverterProxy+UITableView.swift"; sourceTree = "<group>"; };
+		6EBF3E941E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditScriptConverterProxy+UICollectionView.swift"; sourceTree = "<group>"; };
+		6EBF3E961E59C3BE0025443A /* EditScriptConverterProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScriptConverterProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +93,11 @@
 				6EBF3E2E1E58543F0025443A /* Info.plist */,
 				6EBF3E441E58549A0025443A /* EditScript.swift */,
 				6EBF3E461E5854C70025443A /* EditScriptConverter.swift */,
+				6EBF3E961E59C3BE0025443A /* EditScriptConverterProxy.swift */,
+				6EBF3E921E59C3640025443A /* EditScriptConverterProxy+UITableView.swift */,
+				6EBF3E941E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift */,
 				6EBF3E481E5854FD0025443A /* EditDistanceProtocol.swift */,
+				6EBF3E901E59C2FB0025443A /* EditDistanceProxy.swift */,
 				6EBF3E4A1E58552A0025443A /* Array.swift */,
 				6EBF3E4E1E58565A0025443A /* Algorithm */,
 			);
@@ -222,8 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBF3E951E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift in Sources */,
+				6EBF3E971E59C3BE0025443A /* EditScriptConverterProxy.swift in Sources */,
 				6EBF3E451E58549A0025443A /* EditScript.swift in Sources */,
+				6EBF3E911E59C2FB0025443A /* EditDistanceProxy.swift in Sources */,
 				6EBF3E4B1E58552A0025443A /* Array.swift in Sources */,
+				6EBF3E931E59C3640025443A /* EditScriptConverterProxy+UITableView.swift in Sources */,
 				6EBF3E491E5854FD0025443A /* EditDistanceProtocol.swift in Sources */,
 				6EBF3E4D1E58553C0025443A /* Wu.swift in Sources */,
 				6EBF3E471E5854C70025443A /* EditScriptConverter.swift in Sources */,

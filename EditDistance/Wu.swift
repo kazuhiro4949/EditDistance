@@ -11,7 +11,7 @@ import Foundation
 public struct Wu<T: Comparable>: EditDistanceProtocol {
     public typealias Element = T
     
-    public func diff(from: [T], to: [T]) -> [EditScript<T>] {
+    public func calculate(from: [T], to: [T]) -> [EditScript<T>] {
         let xAxis: [T]
         let yAxis: [T]
         var ctl: Ctl
