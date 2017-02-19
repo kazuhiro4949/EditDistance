@@ -42,7 +42,7 @@ That enables to pileline the incremental update. You don't have to take into acc
 
 # How dose it work?
 
-The following examples are updating UI with this library. They generate random elements for data source and update incrementally.
+The following examples are how this library update UI. They generate random elements for data source and update incrementally.
 
 | UITableView | UICollectionView |
 |---|---|
