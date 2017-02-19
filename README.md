@@ -1,5 +1,5 @@
 # EditDistance
-EditDistance is one of incremental update tool for UITableView and UICollectionView.
+EditDistance is one of the incremental update tool for UITableView and UICollectionView.
 
 # What's this?
 It is so difficult to update UITableView or UICollectionView incrementally. Developers need to manage diff between two arrays and update UITableView incrementally.
