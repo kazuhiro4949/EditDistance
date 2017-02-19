@@ -98,13 +98,20 @@ Import EditDistance
 ```
 
 # Usage
-## 1 Calculate Diff between two arrays
+## Calculationg diff between two arrays
+```swift
+["Francis Elton", "Woodruff Chester", "Stanton Denholm"].diff.compare(with: ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"])
+```
+
+## Incremental Update to UITableView
+
+### 1 Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"]
 let script = dataSource.diff.compare(with: nextDataSource)
 ```
 
-## 2. update DataSource and UI
+### 2. update DataSource and UI
 ```swift
 dataSource = nextDataSource
 tableView.diff.reload(with: scripts) 
