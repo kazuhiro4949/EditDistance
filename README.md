@@ -100,7 +100,9 @@ Import EditDistance
 # Usage
 ## Calculationg diff between two arrays
 ```swift
-["Francis Elton", "Woodruff Chester", "Stanton Denholm"].diff.compare(with: ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"])
+let current = ["Francis Elton", "Woodruff Chester", "Stanton Denholm"]
+let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"]
+current.diff.compare(with: next)
 ```
 
 ## Incremental Update to UITableView
