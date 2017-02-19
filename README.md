@@ -6,8 +6,9 @@ It is so difficult to update UITableView or UICollectionView incrementally. Deve
 
 Typical code:
 ```swift
-let dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
+var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
 
+// insertion and deletion to data source
 dataSource.remove(at: 2)
 dataSource.insert("Woodruff Chester", at: 1)
 dataSource.insert("Eduard Colby", at: 3)
@@ -25,6 +26,7 @@ EditDistance takes on that maginging work. All you need is to make updated array
 var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
 var nextDataSource = dataSource
 
+// insertion and deletion to data source
 nextDataSource.remove(at: 2)
 nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
