@@ -9,7 +9,7 @@
 import Foundation
 
 public class EditDistanceProxy<Element: Comparable> {
-    var _array: Array<Element>
+    let _array: Array<Element>
     
     public init(_ array: Array<Element>) {
         _array = array
