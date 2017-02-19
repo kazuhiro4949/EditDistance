@@ -50,7 +50,7 @@ The following examples show how this library update UI. They generate random ele
 
 # Feature
 - [x] You don't need to calculate diff manually.
-- [x] You can choose any algorithm for diff as you like.
+- [x] You can choose any diff algorithm as you like.
 - [x] You don't need to call [reloadRows(at:with:)](https://developer.apple.com/reference/uikit/uitableview/1614935-reloadrows) and [performBatchUpdates(_:completion:)](https://developer.apple.com/reference/uikit/uicollectionview/1618045-performbatchupdates) anymore.
 - [x] minimum implimentation for incremental update
 
