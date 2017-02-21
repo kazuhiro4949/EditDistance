@@ -120,7 +120,7 @@ let script = proxy.compare(with: next) // => EditScript<String>
 
 ### 1 Calculate Diff between two arrays
 ```swift
-let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby, "Farland Ridley", "Alex Helton"]
+let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
 let script = dataSource.diff.compare(with: nextDataSource)
 ```
 
@@ -131,6 +131,14 @@ tableView.diff.reload(with: scripts)
 ```
 
 That's it!
+
+# Details
+
+## Class Design
+
+## Algorithm
+
+## Pros and Cons
 
 # License
 
