@@ -132,6 +132,8 @@ tableView.diff.reload(with: scripts)
 
 That's it!
 
+## Pros and Cons
+
 # License
 
 Copyright (c) 2017 Kazuhiro Hayashi
