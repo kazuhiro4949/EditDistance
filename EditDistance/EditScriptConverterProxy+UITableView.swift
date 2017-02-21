@@ -13,10 +13,10 @@ public extension EditScriptConverterProxy where Converter: UITableView {
         _converter.beginUpdates()
         editScripts.forEach({ (script) in
             switch script {
-            case .add(_, let index):
-                _converter.insertRows(at: [IndexPath(row: index, section: 0)], with: .fade)
-            case .delete(_, let index):
-                _converter.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+            case .add(_, let indexPath):
+                _converter.insertRows(at: [indexPath], with: .fade)
+            case .delete(_, let indexPath):
+                _converter.deleteRows(at: [indexPath], with: .fade)
             case .common:
                 break
             }

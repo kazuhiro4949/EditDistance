@@ -12,18 +12,34 @@ public struct Wu<T: Comparable>: EditDistanceProtocol {
     public typealias Element = T
     
     public init() {}
-    
-    public func calculate(from: [T], to: [T]) -> [EditScript<T>] {
-        let xAxis: [T]
-        let yAxis: [T]
+
+    public func calculate<Col: Collection>(from: Col, to: Col) -> [EditScript<Element>] where Col.Iterator.Element: Collection, Col.Iterator.Element.Iterator.Element == Element {
+        let xAxis: [EditDistanceContainer<T>]
+        let yAxis: [EditDistanceContainer<T>]
         var ctl: Ctl
         if from.count >= to.count {
-            xAxis = to
-            yAxis = from
+            xAxis = to.enumerated().flatMap { (firstOffset, collection) in
+                return collection.enumerated().flatMap { (secondOffset, element) in
+                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                }
+            }
+            yAxis = from.enumerated().flatMap { (firstOffset, collection) in
+                return collection.enumerated().flatMap { (secondOffset, element) in
+                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                }
+            }
             ctl = Ctl(reverse: true, path: [], pathPosition: [:])
         } else {
-            xAxis = from
-            yAxis = to
+            xAxis = from.enumerated().flatMap { (firstOffset, collection) in
+                return collection.enumerated().flatMap { (secondOffset, element) in
+                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                }
+            }
+            yAxis = to.enumerated().flatMap { (firstOffset, collection) in
+                return collection.enumerated().flatMap { (secondOffset, element) in
+                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                }
+            }
             ctl = Ctl(reverse: false, path: [], pathPosition: [:])
         }
         let offset = xAxis.count + 1
@@ -75,7 +91,7 @@ public struct Wu<T: Comparable>: EditDistanceProtocol {
         return traceBack(epc: epc, ctl: ctl, xAxis: xAxis, yAxis: yAxis)
     }
     
-    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: [T], yAxis: [T]) -> [EditScript<T>] {
+    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: [EditDistanceContainer<T>], yAxis: [EditDistanceContainer<T>]) -> [EditScript<T>] {
         var editScript = [EditScript<T>]()
         
         var pxIdx = 0, pyIdx = 0
@@ -84,25 +100,25 @@ public struct Wu<T: Comparable>: EditDistanceProtocol {
                 if (epc[i]!.y - epc[i]!.x) > (pyIdx - pxIdx) {
                     let elem = yAxis[pyIdx]
                     if ctl.reverse {
-                        editScript.append(.delete(element: elem, index: pyIdx))
+                        editScript.append(.delete(element: elem.element, indexPath: elem.indexPath))
                     } else {
-                        editScript.append(.add(element: elem, index: pyIdx))
+                        editScript.append(.add(element: elem.element, indexPath: elem.indexPath))
                     }
                     pyIdx += 1
                 } else if (epc[i]!.y - epc[i]!.x) < (pyIdx - pxIdx) {
                     let elem = xAxis[pxIdx]
                     if ctl.reverse {
-                        editScript.append(.add(element: elem, index: pxIdx))
+                        editScript.append(.add(element: elem.element, indexPath: elem.indexPath))
                     } else {
-                        editScript.append(.delete(element: elem, index: pxIdx))
+                        editScript.append(.delete(element: elem.element, indexPath: elem.indexPath))
                     }
                     pxIdx += 1
                 } else {
                     let elem = xAxis[pxIdx]
                     if ctl.reverse {
-                        editScript.append(.common(element: elem, index: pxIdx))
+                        editScript.append(.common(element: elem.element, indexPath: elem.indexPath))
                     } else {
-                        editScript.append(.common(element: elem, index: pyIdx))
+                        editScript.append(.common(element: elem.element, indexPath: elem.indexPath))
                     }
                     pxIdx += 1
                     pyIdx += 1
@@ -120,7 +136,7 @@ public struct Wu<T: Comparable>: EditDistanceProtocol {
         return (r, max(lsP, rsP))
     }
     
-    private func snake<T: Comparable>(xAxis: [T], yAxis: [T], k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
+    private func snake<T: Comparable>(xAxis: [EditDistanceContainer<T>], yAxis: [EditDistanceContainer<T>], k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
         var y = y
         var x = y - k
         

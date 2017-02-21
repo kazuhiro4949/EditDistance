@@ -8,18 +8,34 @@
 
 import Foundation
 
-public class EditDistanceProxy<Element: Comparable> {
-    let _array: Array<Element>
+public class TwoDimentionalEditDistanceProxy<T: Collection> where T.Iterator.Element: Collection, T.Iterator.Element.Iterator.Element: Comparable {
+    let _collection: T
     
-    public init(_ array: Array<Element>) {
-        _array = array
+    public init(_ collection: T) {
+        _collection = collection
     }
     
-    public func compare<EditDistance: EditDistanceProtocol>(with array: [Element], by algorithm: EditDistance) -> [EditScript<Element>] where EditDistance.Element == Element {
-        return algorithm.calculate(from: _array, to: array)
+    public func compare<EditDistance: EditDistanceProtocol>(with collection: T, by algorithm: EditDistance) -> [EditScript<T.Iterator.Element.Iterator.Element>] where EditDistance.Element == T.Iterator.Element.Iterator.Element {
+        return algorithm.calculate(from: _collection, to: collection)
     }
     
-    public func compare(with array: [Element]) -> [EditScript<Element>] {
-        return compare(with: array, by: Wu())
+    public func compare<EditDistance: EditDistanceProtocol>(with collection: T) -> [EditScript<T.Iterator.Element.Iterator.Element>] where EditDistance.Element == T.Iterator.Element.Iterator.Element {
+        return compare(with: collection, by: Wu())
+    }
+}
+
+public class OneDimentionalEditDistanceProxy<T: Collection> where T.Iterator.Element: Comparable {
+    let _collection: T
+    
+    public init(_ collection: T) {
+        _collection = collection
+    }
+    
+    public func compare<EditDistance: EditDistanceProtocol>(with collection: T, by algorithm: EditDistance) -> [EditScript<T.Iterator.Element>] where EditDistance.Element == T.Iterator.Element {
+        return algorithm.calculate(from: [_collection], to: [collection])
+    }
+    
+    public func compare<EditDistance: EditDistanceProtocol>(with collection: T) -> [EditScript<T.Iterator.Element>] where EditDistance.Element == T.Iterator.Element {
+        return compare(with: collection, by: Wu())
     }
 }

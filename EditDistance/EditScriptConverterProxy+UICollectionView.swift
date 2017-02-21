@@ -13,10 +13,10 @@ public extension EditScriptConverterProxy where Converter: UICollectionView {
         _converter.performBatchUpdates({ [weak self] in
             editScripts.forEach({ (script) in
                 switch script {
-                case .add(_, let index):
-                    self?._converter.insertItems(at: [IndexPath(item: index, section: 0)])
-                case .delete(_, let index):
-                    self?._converter.deleteItems(at: [IndexPath(item: index, section: 0)])
+                case .add(_, let indexPath):
+                    self?._converter.insertItems(at: [indexPath])
+                case .delete(_, let indexPath):
+                    self?._converter.deleteItems(at: [indexPath])
                 case .common:
                     break
                 }
