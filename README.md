@@ -132,6 +132,10 @@ tableView.diff.reload(with: scripts)
 
 That's it!
 
+## Class Design
+
+## Algorithm
+
 ## Pros and Cons
 
 # License
