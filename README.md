@@ -132,7 +132,7 @@ tableView.diff.reload(with: scripts)
 
 That's it!
 
-# Detail
+# Details
 
 ## Class Design
 
