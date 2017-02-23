@@ -23,7 +23,7 @@ public class AnyEditDistance<T>: EditDistanceAlgorithm where T: Comparable {
     public typealias Element = T
     public var _calc: ([[T]], [[T]]) -> [EditScript<T>]
     
-    init(_ calc: @escaping ([[T]], [[T]]) -> [EditScript<T>]) {
+    public init(_ calc: @escaping ([[T]], [[T]]) -> [EditScript<T>]) {
         _calc = calc
     }
 }
