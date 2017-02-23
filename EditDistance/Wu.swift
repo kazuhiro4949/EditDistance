@@ -8,38 +8,32 @@
 
 import Foundation
 
-public struct Wu<T: Comparable>: EditDistanceProtocol {
+public struct Wu<T: Comparable>: EditDistanceAlgorithm {
     public typealias Element = T
     
     public init() {}
 
-    public func calculate<Col: Collection>(from: Col, to: Col) -> [EditScript<Element>] where Col.Iterator.Element: Collection, Col.Iterator.Element.Iterator.Element == Element {
+    public func calculate(from: [[T]], to: [[T]]) -> [EditScript<T>] {
+        let _to = to.enumerated().flatMap { (firstIdx, ary) in
+            return ary.enumerated().flatMap { (secondIdx, elm) in
+                return EditDistanceContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
+            }
+        }
+        let _from = from.enumerated().flatMap { (firstIdx, ary) in
+            return ary.enumerated().flatMap { (secondIdx, elm) in
+                return EditDistanceContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
+            }
+        }
         let xAxis: [EditDistanceContainer<T>]
         let yAxis: [EditDistanceContainer<T>]
         var ctl: Ctl
         if from.count >= to.count {
-            xAxis = to.enumerated().flatMap { (firstOffset, collection) in
-                return collection.enumerated().flatMap { (secondOffset, element) in
-                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
-                }
-            }
-            yAxis = from.enumerated().flatMap { (firstOffset, collection) in
-                return collection.enumerated().flatMap { (secondOffset, element) in
-                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
-                }
-            }
+            xAxis = _to
+            yAxis = _from
             ctl = Ctl(reverse: true, path: [], pathPosition: [:])
         } else {
-            xAxis = from.enumerated().flatMap { (firstOffset, collection) in
-                return collection.enumerated().flatMap { (secondOffset, element) in
-                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
-                }
-            }
-            yAxis = to.enumerated().flatMap { (firstOffset, collection) in
-                return collection.enumerated().flatMap { (secondOffset, element) in
-                    return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
-                }
-            }
+            xAxis = _from
+            yAxis = _to
             ctl = Ctl(reverse: false, path: [], pathPosition: [:])
         }
         let offset = xAxis.count + 1
