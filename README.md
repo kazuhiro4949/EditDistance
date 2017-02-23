@@ -32,9 +32,9 @@ nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
 
 // You don't need to write insertion and deletion.
-let scripts = dataSource.diff.compare(with: nextDataSource)
+let scripts = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
-tableView.diff.reload(with: scripts) 
+tableView.diff.reload(to: scripts) 
 
 ```
 
@@ -111,9 +111,9 @@ let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colb
 let proxy = current.diff // => EditDistanceProxy<String>
 ```
 
-### 3. the instance has compare(with:) to calculate diff with next array.
+### 3. the instance has compare(to:) to calculate diff with next array.
 ```swift
-let script = proxy.compare(with: next) // => EditScript<String>
+let script = proxy.compare(to: next) // => EditScript<String>
 ```
 
 ## Incremental Update to UITableView
@@ -121,13 +121,14 @@ let script = proxy.compare(with: next) // => EditScript<String>
 ### 1 Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
-let script = dataSource.diff.compare(with: nextDataSource)
+let script = dataSource.diff.compare(to: nextDataSource)
 ```
 
 ### 2. update DataSource and UI
 ```swift
 dataSource = nextDataSource
-tableView.diff.reload(with: scripts) 
+tableView.diff.reload
+scripts) 
 ```
 
 That's it!
