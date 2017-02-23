@@ -40,7 +40,7 @@ public class EditDistanceProxy<T: Comparable> {
         }
     }
     
-    public func compare<Algorithm: EditDistanceAlgorithm>(to ary: [T], algorithm: Algorithm) -> [EditScript<T>] where Algorithm.Element == T {
+    public func compare<Algorithm: EditDistanceAlgorithm>(to ary: [T], with algorithm: Algorithm) -> [EditScript<T>] where Algorithm.Element == T {
         return _generator(ary).calculate(with: algorithm)
     }
     

@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct EditDistanceContainer<T: Comparable>: Equatable {
+public struct EditDistanceContainer<T: Comparable>: Equatable {
     let indexPath: IndexPath
     let element: T
 }
 
-func ==<T: Comparable>(lhs: EditDistanceContainer<T>, rhs: EditDistanceContainer<T>) -> Bool {
+public func ==<T: Comparable>(lhs: EditDistanceContainer<T>, rhs: EditDistanceContainer<T>) -> Bool {
     return lhs.element == rhs.element
 }
