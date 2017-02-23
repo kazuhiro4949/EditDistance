@@ -14,7 +14,7 @@ public protocol EditDistanceAlgorithm {
     func calculate(from: [[Element]], to: [[Element]]) -> [EditScript<Element>]
 }
 
-public class AnyEditDistance<T>: EditDistanceAlgorithm where T: Comparable {
+public class AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Comparable {
 
     public func calculate(from: [[T]], to: [[T]]) -> [EditScript<T>] {
         return _calc(from, to)
