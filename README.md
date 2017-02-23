@@ -1,8 +1,8 @@
 # EditDistance
-EditDistance is one of the incremental update tool for UITableView and UICollectionView.
+EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
 # What's this?
-It is so difficult to update UITableView or UICollectionView incrementally. Developers need to manage diff between two arrays and update UITableView incrementally.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update UITableView or UICollectionView incrementally, becaouse iOS App Developers need to manage differences between two arrays.
 
 Typical code:
 ```swift
@@ -20,7 +20,7 @@ tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, secti
 tableView.endUpdates()
 ```
 
-EditDistance takes on that maginging work. All you need is to make updated array.
+EditDistance takes on that task. All you need is to make "updated array".
 
 ```swift
 var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
@@ -38,11 +38,11 @@ tableView.diff.reload(to: scripts)
 
 ```
 
-That enables to pileline the incremental update. You don't have to take into account Diff between DataSource and UI.
+That enables to pileline the incremental update. You don't have to take into account the differences.
 
 # How dose it work?
 
-The following examples show how this library update UI. They generate random elements for data source and update incrementally.
+The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
 
 | UITableView | UICollectionView |
 |---|---|
