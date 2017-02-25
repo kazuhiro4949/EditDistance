@@ -9,9 +9,17 @@
 import UIKit
 
 public extension EditScriptConverterProxy where Converter: UICollectionView {
-    public func performBatchUpdates<T>(with editScripts: [EditScript<T>], completion: ((Bool) -> Void)?) {
+    
+    /// Updates this UICollectionView object with EditDistanceContainer object.
+    ///
+    /// EditScript array in the object is converted to insertItems(at:) and deleteItems(at:) of UICollectionView
+    ///
+    /// - Parameters:
+    ///   - container: <#container description#>
+    ///   - completion: <#completion description#>
+    public func performBatchUpdates<T>(with container: EditDistanceContainer<T>, completion: ((Bool) -> Void)?) {
         _converter.performBatchUpdates({ [weak self] in
-            editScripts.forEach({ (script) in
+            container.editScripts.forEach({ (script) in
                 switch script {
                 case .add(_, let indexPath):
                     self?._converter.insertItems(at: [indexPath])

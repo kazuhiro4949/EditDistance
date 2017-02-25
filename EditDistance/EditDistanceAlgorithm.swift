@@ -11,19 +11,19 @@ import Foundation
 public protocol EditDistanceAlgorithm {
     associatedtype Element: Comparable
     
-    func calculate(from: [[Element]], to: [[Element]]) -> [EditScript<Element>]
+    func calculate(from: [[Element]], to: [[Element]]) -> EditDistanceContainer<Element>
 }
 
-public class AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Comparable {
+public struct AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Comparable {
 
-    public func calculate(from: [[T]], to: [[T]]) -> [EditScript<T>] {
+    public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
         return _calc(from, to)
     }
 
     public typealias Element = T
-    public var _calc: ([[T]], [[T]]) -> [EditScript<T>]
+    public var _calc: ([[T]], [[T]]) -> EditDistanceContainer<T>
     
-    public init(_ calc: @escaping ([[T]], [[T]]) -> [EditScript<T>]) {
+    public init(_ calc: @escaping ([[T]], [[T]]) -> EditDistanceContainer<T>) {
         _calc = calc
     }
 }

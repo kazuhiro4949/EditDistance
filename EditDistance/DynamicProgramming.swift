@@ -8,21 +8,21 @@
 
 import Foundation
 
-public class DynamicProgramming<T: Comparable>: EditDistanceAlgorithm {
+public struct DynamicProgramming<T: Comparable>: EditDistanceAlgorithm {
     public typealias Element = T
     
     public init() {}
     
-    public func calculate(from: [[T]], to: [[T]]) -> [EditScript<T>] {
+    public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
         let flattendTo = to.enumerated().flatMap { (firstOffset, collection) in
             return collection.enumerated().flatMap { (secondOffset, element) in
-                return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
             }
         }
         
         let flattendFrom = from.enumerated().flatMap { (firstOffset, collection) in
             return collection.enumerated().flatMap { (secondOffset, element) in
-                return EditDistanceContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
+                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
             }
         }
         
@@ -37,8 +37,6 @@ public class DynamicProgramming<T: Comparable>: EditDistanceAlgorithm {
                 }
             }
         }
-        
-        print(table)
         
         var editScripts = [EditScript<T>]()
         
@@ -80,6 +78,6 @@ public class DynamicProgramming<T: Comparable>: EditDistanceAlgorithm {
             }
         }
         
-        return editScripts
+        return EditDistanceContainer(editScripts: editScripts)
     }
 }

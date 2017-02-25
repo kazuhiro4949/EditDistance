@@ -13,19 +13,19 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
     
     public init() {}
 
-    public func calculate(from: [[T]], to: [[T]]) -> [EditScript<T>] {
+    public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
         let _to = to.enumerated().flatMap { (firstIdx, ary) in
             return ary.enumerated().flatMap { (secondIdx, elm) in
-                return EditDistanceContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
+                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
             }
         }
         let _from = from.enumerated().flatMap { (firstIdx, ary) in
             return ary.enumerated().flatMap { (secondIdx, elm) in
-                return EditDistanceContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
+                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
             }
         }
-        let xAxis: [EditDistanceContainer<T>]
-        let yAxis: [EditDistanceContainer<T>]
+        let xAxis: [EditDistanceAlgorithmContainer<T>]
+        let yAxis: [EditDistanceAlgorithmContainer<T>]
         var ctl: Ctl
         if _from.count >= _to.count {
             xAxis = _to
@@ -82,10 +82,10 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
             r = ctl.pathPosition[r]!.k
         }
         
-        return traceBack(epc: epc, ctl: ctl, xAxis: xAxis, yAxis: yAxis)
+        return EditDistanceContainer(editScripts: traceBack(epc: epc, ctl: ctl, xAxis: xAxis, yAxis: yAxis))
     }
     
-    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: [EditDistanceContainer<T>], yAxis: [EditDistanceContainer<T>]) -> [EditScript<T>] {
+    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>]) -> [EditScript<T>] {
         var editScript = [EditScript<T>]()
         
         var pxIdx = 0, pyIdx = 0
@@ -130,7 +130,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return (r, max(lsP, rsP))
     }
     
-    private func snake<T: Comparable>(xAxis: [EditDistanceContainer<T>], yAxis: [EditDistanceContainer<T>], k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
+    private func snake<T: Comparable>(xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>], k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
         var y = y
         var x = y - k
         
