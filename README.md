@@ -38,9 +38,7 @@ tableView.diff.reload(to: scripts)
 
 ```
 
-You don't have to manage how to update incrementally. That enables to pileline that.
-
-# How dose it work?
+You don't have to manage how to update incrementally. That enables to pileline the process.
 
 The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
 
@@ -48,10 +46,22 @@ The followings show how this library update UI. They generate random elements fo
 |---|---|
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
-The differences are calculated with "Edit Distance Algorithm". There are many ways to calculate it.
+# How dose it work?
+EditDistance calculates a difference between two arrays and converts it to the incremental update processes of UITableView or UICollectionView.
 
+The differences are calculated with "Edit Distance Algorithm". There are the many ways and almost all of them runs in polynominal time.
+
+- Dynamic Programming (*O(NM)*)
+- Mayer's Algorithm (*O(ND)*)
+- Wu's Algorithm (*O(NP)*)
+- etc.
+
+*N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
+
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when the app has many items to show on UTableView and add or delete a few items.
 
 # Pros and Cons
+Calculation in this library is not always reasonable to update UI. I recommended you calculating edit distance in background and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -103,22 +113,70 @@ Import EditDistance
 ```
 
 # Usage
-## Calculationg diff between two arrays
-### 1. prepare two arrays.
+## Calculation differences between two arrays
+### One dimentional array
+#### 1. prepare two arrays.
 ```swift
-let current = ["Francis Elton", "Woodruff Chester", "Stanton Denholm"]
-let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby"]
+let current = ["Francis", "Woodruff", "Stanton"]
+let next = ["Francis", "Woodruff", "Stanton", "Eduards"]
 ```
 
-### 2. calling diff from Array makes EditDistanceProxy\<T> instance.
+#### 2. calling diff from Array makes EditDistanceProxy\<T> instance.
 
 ```swift
 let proxy = current.diff // => EditDistanceProxy<String>
 ```
 
-### 3. the instance has compare(to:) to calculate diff with next array.
+#### 3. the instance has compare(to:) to calculate diff with next array.
 ```swift
-let script = proxy.compare(to: next) // => EditScript<String>
+let distance = proxy.compare(to: next) // => EditDistanceContainer<String>
+```
+
+### Two dimentional array
+#### 1. prepare two arrays.
+```swift
+let current = [["Francis", "Woodruff"], ["Stanton"]]
+let next = [["Francis", "Woodruff"], ["Stanton", "Eduard"]]
+```
+
+#### 2. instantiate EditDistance object
+
+```swift
+let editDistance = EditDistance(from: current, to: next) // => EditDistance<String>
+```
+
+#### 3. the instance has compare(to:) to calculate diff with next array.
+```swift
+let container = editDistance.calculate() // => EditDistanceContainer<String>
+```
+
+### change the algorithm
+#### to an algorithm objcts
+```swift
+let container = current.diff.compare(to: next, with: DynamicAlgorithm())
+```
+### to a customized algorithm
+```swift
+// implement algorithm
+let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
+    //...
+    //...
+}
+
+let container = current.diff.compare(to: next, with: algorithm)
+```
+### make an algorithm class.
+```swift
+//implements protocol
+public struct Wu<T: Comparable>: EditDistanceAlgorithm {
+    public typealias Element = T
+    
+    public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
+      //...
+      //...
+    }
+}
+
 ```
 
 ## Incremental Update to UITableView
