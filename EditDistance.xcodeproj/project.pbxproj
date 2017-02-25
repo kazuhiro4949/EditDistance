@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6E0301671E61689200E24C49 /* EditDistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301661E61689200E24C49 /* EditDistanceContainer.swift */; };
+		6E0301691E619DB300E24C49 /* WuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301681E619DB300E24C49 /* WuTests.swift */; };
+		6E03016D1E61A8B000E24C49 /* DynamicProgrammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */; };
 		6EBF3E341E58543F0025443A /* EditDistance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF3E2A1E58543F0025443A /* EditDistance.framework */; };
 		6EBF3E391E58543F0025443A /* EditDistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E381E58543F0025443A /* EditDistanceTests.swift */; };
 		6EBF3E3B1E58543F0025443A /* EditDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBF3E2D1E58543F0025443A /* EditDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		6E0301661E61689200E24C49 /* EditDistanceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistanceContainer.swift; sourceTree = "<group>"; };
+		6E0301681E619DB300E24C49 /* WuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WuTests.swift; sourceTree = "<group>"; };
+		6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProgrammingTests.swift; sourceTree = "<group>"; };
 		6EBF3E2A1E58543F0025443A /* EditDistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EditDistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBF3E2D1E58543F0025443A /* EditDistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		6EBF3E2E1E58543F0025443A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				6EBF3E381E58543F0025443A /* EditDistanceTests.swift */,
+				6E0301681E619DB300E24C49 /* WuTests.swift */,
+				6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */,
 				6EBF3E3A1E58543F0025443A /* Info.plist */,
 			);
 			path = EditDistanceTests;
@@ -263,6 +269,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EBF3E391E58543F0025443A /* EditDistanceTests.swift in Sources */,
+				6E0301691E619DB300E24C49 /* WuTests.swift in Sources */,
+				6E03016D1E61A8B000E24C49 /* DynamicProgrammingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

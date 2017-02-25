@@ -22,7 +22,28 @@ public struct EditDistanceContainer<Element: Comparable> {
 /// - add: an element on the desitination array is added
 /// - common: element on two arrays is common
 /// - delete: an element on the starting array is deleted
-public enum EditScript<Element> {
+public enum EditScript<Element: Comparable>: Equatable {
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: EditScript<Element>, rhs: EditScript<Element>) -> Bool {
+        switch (lhs, rhs) {
+        case (.add(let one, let oneidx), .add(let another, let anoidx)):
+             return one == another && oneidx == anoidx
+        case (.common(let one, let oneidx), .common(let another, let anoidx)):
+            return one == another && oneidx == anoidx
+        case (.delete(let one, let oneidx), .delete(let another, let anoidx)):
+            return one == another && oneidx == anoidx
+        default:
+            return false
+        }
+    }
+
     case common(element: Element, indexPath: IndexPath)
     case add(element: Element, indexPath: IndexPath)
     case delete(element: Element, indexPath: IndexPath)

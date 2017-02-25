@@ -13,24 +13,66 @@ class EditDistanceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testCallingAlgorithmToOneDimentionalArrays() {
+        let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
+            let fromExpected = [["a", "b", "c"]]
+            let toExpected = [["d", "e", "f"]]
+            
+            XCTAssertEqual(from.count, fromExpected.count, "starting one dimentional array becomes two dimentional array")
+            XCTAssertEqual(to.count, toExpected.count, "destination one dimentional array becomes two dimentional array")
+            
+            XCTAssertEqual(from.first!, fromExpected.first!, "starting is expected array")
+            XCTAssertEqual(to.first!, toExpected.first!, "destinationis expected array")
+            
+            return EditDistanceContainer(editScripts: [.add(element: "a", indexPath: IndexPath(row: 0, section: 0))])
         }
+
+        let _ = EditDistance(from: ["a", "b", "c"], to: ["d", "e", "f"]).calculate(with: algorithm)
     }
     
+    func testCallingAlgorithmToTwoDimentionalArrays() {
+        let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
+            let fromExpected = [["a", "b", "c"]]
+            let toExpected = [["d", "e", "f"]]
+            
+            XCTAssertEqual(from.count, fromExpected.count, "starting array is two dimentional array")
+            XCTAssertEqual(to.count, toExpected.count, "destination array is two dimentional array")
+            
+            XCTAssertEqual(from.first!, fromExpected.first!, "starting is expected array")
+            XCTAssertEqual(to.first!, toExpected.first!, "destinationis expected array")
+            
+            return EditDistanceContainer(editScripts: [.add(element: "a", indexPath: IndexPath(row: 0, section: 0))])
+        }
+        
+        let _ = EditDistance(from: [["a", "b", "c"]], to: [["d", "e", "f"]]).calculate(with: algorithm)
+    }
+    
+    func testOutputEditDistanceContainer() {
+        let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
+            let scripts: [EditScript<String>] = [
+                .common(element: "a", indexPath: IndexPath(row: 0, section: 0)),
+                .delete(element: "b", indexPath: IndexPath(row: 1, section: 0)),
+                .add(element: "d", indexPath: IndexPath(row: 1, section: 0)),
+                .common(element: "c", indexPath: IndexPath(row: 2, section: 0))
+            ]
+            
+            return EditDistanceContainer(editScripts: scripts)
+        }
+        
+        let expected: [EditScript<String>] = [
+            .common(element: "a", indexPath: IndexPath(row: 0, section: 0)),
+            .delete(element: "b", indexPath: IndexPath(row: 1, section: 0)),
+            .add(element: "d", indexPath: IndexPath(row: 1, section: 0)),
+            .common(element: "c", indexPath: IndexPath(row: 2, section: 0))
+        ]
+        
+        let container = EditDistance(from: [["a", "b", "c"]], to: [["a", "d", "c"]]).calculate(with: algorithm)
+        XCTAssertEqual(expected, container.editScripts, "container is a correct output from EditDistance")
+    }
 }

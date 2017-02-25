@@ -16,8 +16,16 @@ public struct EditDistanceAlgorithmContainer<T: Comparable>: Equatable {
         self.indexPath = indexPath
         self.element = element
     }
-}
-
-public func ==<T: Comparable>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
-    return lhs.element == rhs.element
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==<T: Comparable>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
+        return lhs.element == rhs.element
+    }
 }
