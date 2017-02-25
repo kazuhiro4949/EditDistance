@@ -48,6 +48,11 @@ The followings show how this library update UI. They generate random elements fo
 |---|---|
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
+The differences are calculated with "Edit Distance Algorithm". There are many ways to calculate it.
+
+
+# Pros and Cons
+
 # Feature
 - [x] You don't need to calculate diff manually.
 - [x] You can choose any diff algorithm as you like.
@@ -138,8 +143,6 @@ That's it!
 ## Class Design
 
 ## Algorithm
-
-## Pros and Cons
 
 # License
 
