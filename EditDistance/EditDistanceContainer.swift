@@ -9,8 +9,8 @@
 import Foundation
 
 public struct EditDistanceContainer<T: Comparable>: Equatable {
-    let indexPath: IndexPath
-    let element: T
+    public let indexPath: IndexPath
+    public let element: T
 }
 
 public func ==<T: Comparable>(lhs: EditDistanceContainer<T>, rhs: EditDistanceContainer<T>) -> Bool {
