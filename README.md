@@ -196,12 +196,6 @@ scripts)
 
 That's it!
 
-# Details
-
-## Class Design
-
-## Algorithm
-
 # License
 
 Copyright (c) 2017 Kazuhiro Hayashi
