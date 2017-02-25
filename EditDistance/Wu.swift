@@ -27,7 +27,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         let xAxis: [EditDistanceContainer<T>]
         let yAxis: [EditDistanceContainer<T>]
         var ctl: Ctl
-        if from.count >= to.count {
+        if _from.count >= _to.count {
             xAxis = _to
             yAxis = _from
             ctl = Ctl(reverse: true, path: [], pathPosition: [:])
