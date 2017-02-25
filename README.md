@@ -1,8 +1,8 @@
 # EditDistance
-EditDistance is one of the incremental update tool for UITableView and UICollectionView.
+EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
 # What's this?
-It is so difficult to update UITableView or UICollectionView incrementally. Developers need to manage diff between two arrays and update UITableView incrementally.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update UITableView or UICollectionView incrementally, because iOS App Developers need to manage differences between two data sources.
 
 Typical code:
 ```swift
@@ -20,7 +20,7 @@ tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, secti
 tableView.endUpdates()
 ```
 
-EditDistance takes on that maginging work. All you need is to make updated array.
+EditDistance takes on that task. All you need is to make the updated array.
 
 ```swift
 var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
@@ -32,21 +32,26 @@ nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
 
 // You don't need to write insertion and deletion.
-let scripts = dataSource.diff.compare(with: nextDataSource)
+let scripts = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
-tableView.diff.reload(with: scripts) 
+tableView.diff.reload(to: scripts) 
 
 ```
 
-That enables to pileline the incremental update. You don't have to take into account Diff between DataSource and UI.
+You don't have to manage how to update incrementally. That enables to pileline that.
 
 # How dose it work?
 
-The following examples show how this library update UI. They generate random elements for data source and update incrementally.
+The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
 
 | UITableView | UICollectionView |
 |---|---|
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
+
+The differences are calculated with "Edit Distance Algorithm". There are many ways to calculate it.
+
+
+# Pros and Cons
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -111,9 +116,9 @@ let next = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colb
 let proxy = current.diff // => EditDistanceProxy<String>
 ```
 
-### 3. the instance has compare(with:) to calculate diff with next array.
+### 3. the instance has compare(to:) to calculate diff with next array.
 ```swift
-let script = proxy.compare(with: next) // => EditScript<String>
+let script = proxy.compare(to: next) // => EditScript<String>
 ```
 
 ## Incremental Update to UITableView
@@ -121,13 +126,14 @@ let script = proxy.compare(with: next) // => EditScript<String>
 ### 1 Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
-let script = dataSource.diff.compare(with: nextDataSource)
+let script = dataSource.diff.compare(to: nextDataSource)
 ```
 
 ### 2. update DataSource and UI
 ```swift
 dataSource = nextDataSource
-tableView.diff.reload(with: scripts) 
+tableView.diff.reload
+scripts) 
 ```
 
 That's it!
@@ -137,8 +143,6 @@ That's it!
 ## Class Design
 
 ## Algorithm
-
-## Pros and Cons
 
 # License
 
