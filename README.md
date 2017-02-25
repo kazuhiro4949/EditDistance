@@ -58,10 +58,10 @@ The differences are calculated with "Edit Distance Algorithm". There are the man
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when the app has many items to show on UTableView and add or delete a few items.
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items to show on UTableView and add or delete a few items.
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommended you calculating edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
