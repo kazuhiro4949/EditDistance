@@ -104,8 +104,8 @@
 			children = (
 				6EBF3E2D1E58543F0025443A /* EditDistance.h */,
 				6EBF3E2E1E58543F0025443A /* Info.plist */,
-				6EBF3E441E58549A0025443A /* EditScript.swift */,
 				6EBF3E901E59C2FB0025443A /* EditDistance.swift */,
+				6EBF3E441E58549A0025443A /* EditScript.swift */,
 				6E0301631E5F2DA300E24C49 /* Converter */,
 				6EBF3E4E1E58565A0025443A /* Algorithm */,
 			);
