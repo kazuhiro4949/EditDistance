@@ -32,9 +32,9 @@ nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
 
 // You don't need to write insertion and deletion.
-let scripts = dataSource.diff.compare(to: nextDataSource)
+let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
-tableView.diff.reload(to: scripts) 
+tableView.diff.reload(to: container) 
 
 ```
 
@@ -58,10 +58,10 @@ The differences are calculated with "Edit Distance Algorithm". There are the man
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when the app has many items to show on UTableView and add or delete a few items.
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items to show on UTableView and add or delete a few items.
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommended you calculating edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -129,7 +129,7 @@ let proxy = current.diff // => EditDistanceProxy<String>
 
 #### 3. the instance has compare(to:) to calculate diff with next array.
 ```swift
-let distance = proxy.compare(to: next) // => EditDistanceContainer<String>
+let container = proxy.compare(to: next) // => EditDistanceContainer<String>
 ```
 
 ### Two dimentional array
@@ -150,12 +150,13 @@ let editDistance = EditDistance(from: current, to: next) // => EditDistance<Stri
 let container = editDistance.calculate() // => EditDistanceContainer<String>
 ```
 
-### change the algorithm
-#### to an algorithm objcts
+### customizing algorithm
+
+#### to preset algorithm objcts
 ```swift
 let container = current.diff.compare(to: next, with: DynamicAlgorithm())
 ```
-### to a customized algorithm
+#### to closure
 ```swift
 // implement algorithm
 let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
@@ -165,7 +166,7 @@ let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<S
 
 let container = current.diff.compare(to: next, with: algorithm)
 ```
-### make an algorithm class.
+#### make a new algorithm class.
 ```swift
 //implements protocol
 public struct Wu<T: Comparable>: EditDistanceAlgorithm {
@@ -184,17 +185,14 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
 ### 1 Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
-let script = dataSource.diff.compare(to: nextDataSource)
+let container = dataSource.diff.compare(to: nextDataSource)
 ```
 
 ### 2. update DataSource and UI
 ```swift
 dataSource = nextDataSource
-tableView.diff.reload
-scripts) 
+tableView.diff.reload(with: container) 
 ```
-
-That's it!
 
 # License
 
