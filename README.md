@@ -49,7 +49,7 @@ You don't have to manage how to update incrementally. That enables to pileline t
 # How dose it work?
 EditDistance calculates a difference between two arrays and converts it to the incremental update processes of UITableView or UICollectionView.
 
-The differences are calculated with "Edit Distance Algorithm". There are the many ways and almost all of them runs in polynominal time.
+The differences are calculated with **Edit Distance Algorithm**. There are many ways to calculate and almost all of them run in polynominal time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
@@ -58,7 +58,7 @@ The differences are calculated with "Edit Distance Algorithm". There are the man
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items to show on UTableView and add or delete a few items.
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items to show on your table view and add or delete a few items. (e.g. autopager and access history in your app)
 
 # Pros and Cons
 Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
@@ -193,6 +193,24 @@ let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(with: container) 
 ```
+
+# Performance
+Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speed for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays is composed of random UUID Strings.
+
+- from 100 items to 120 items (only addition), avg: 0.002 sec
+- from 100 items to 120 items (addition and deletion), avg: 0.002 sec
+- from 100 items to 200 items (only addition), avg: 0.003 ms
+- from 100 items to 200 items (addition and deletion), avg: 0.003 ms
+- from 1000 items to 1050 items (only addition), avg: 0.010 sec
+- from 1000 items to 1050 items (addition and deletion), avg: 0.011 sec
+- from 1000 items to 1200 items (only addition), avg: 0.010 sec
+- from 1000 items to 1200 items (addition and deletion), avg: 0.030 ms
+- from 10000 items to 10100 items (only addition), avg: 0.080 ms
+- from 10000 items to 10100 items (addition and deletion), avg: 0.088 0ms
+- from 10000 items to 12000 items (only addition), avg: 0.105 ms
+- from 10000 items to 12000 items (addition and deletion), avg: 0.194 ms
+
+Test Cases are [here](). You can take reexamintion with them.
 
 # License
 
