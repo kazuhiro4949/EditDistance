@@ -49,7 +49,7 @@ You don't have to manage how to update incrementally. That enables to pileline t
 # How dose it work?
 EditDistance calculates a difference between two arrays and converts it into an incremental update processes of UITableView or UICollectionView.
 
-The differences are calculated with **Edit Distance Algorithm**. There are many ways to calculate and almost all of them run in polynominal time.
+The differences are calculated with [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate and almost all of them run in polynominal time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
