@@ -58,7 +58,7 @@ The differences are calculated with [**Edit Distance Algorithm**](https://en.wik
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items to show on your table view and add or delete a few items. (e.g. autopager and access history in your app)
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager and access history in your app)
 
 # Pros and Cons
 Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
