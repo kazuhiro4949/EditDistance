@@ -155,7 +155,7 @@ let container = editDistance.calculate() // => EditDistanceContainer<String>
 ```swift
 let container = current.diff.compare(to: next, with: DynamicAlgorithm())
 ```
-### to a customized algorithm
+#### to a customized algorithm
 ```swift
 // implement algorithm
 let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<String> in
@@ -165,7 +165,7 @@ let algorithm = AnyEditDistanceAlgorithm { (from, to) -> EditDistanceContainer<S
 
 let container = current.diff.compare(to: next, with: algorithm)
 ```
-### make an algorithm class.
+#### make an algorithm class.
 ```swift
 //implements protocol
 public struct Wu<T: Comparable>: EditDistanceAlgorithm {
