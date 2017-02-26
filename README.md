@@ -1,4 +1,4 @@
-g# EditDistance
+# EditDistance
 EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
 The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
@@ -58,7 +58,7 @@ The differences are calculated with [**Edit Distance Algorithm**](https://en.wik
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager and access history in your app)
+In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager, access history or notification)
 
 # Pros and Cons
 Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
