@@ -14,7 +14,7 @@ The followings show how this library update UI. They generate the random items a
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
 # What's this?
-This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update UITableView or UICollectionView incrementally, because iOS app developers need to manage differences between two data sources.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between two data sources.
 
 Typical code:
 ```swift
@@ -53,9 +53,9 @@ tableView.diff.reload(to: container)
 You don't have to manage how to update incrementally. That enables to pileline the process.
 
 # How dose it work?
-EditDistance calculates a difference between two arrays and converts it into an incremental update processes of UITableView or UICollectionView.
+EditDistance calculates a difference between two arrays and converts it into an incremental update of UITableView or UICollectionView.
 
-The differences are calculated with [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate and almost all of them run in polynominal time.
+The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate and almost all of them nealy run in linear time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
