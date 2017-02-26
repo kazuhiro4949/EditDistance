@@ -1,6 +1,10 @@
 # EditDistance
 EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
+[![Version](https://img.shields.io/cocoapods/v/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+[![License](https://img.shields.io/cocoapods/l/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+[![Platform](https://img.shields.io/cocoapods/p/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+
 The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
 
 | UITableView | UICollectionView |
