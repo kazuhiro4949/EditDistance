@@ -7,7 +7,7 @@ EditDistance is one of the incremental update tool for UITableView and UICollect
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 
-The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
+The followings show how this library update UI. They generate the random items and update UI incrementally.
 
 | UITableView | UICollectionView |
 |---|---|
