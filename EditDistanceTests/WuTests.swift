@@ -121,33 +121,135 @@ class WuTests: XCTestCase {
         }
     }
     
-    func testPerformanceOfTwentyElementAddedToBottom() {
-        let from = Array(repeating: 0, count: 10000)
-        let to = Array(repeating: 0, count: 10000) + Array(repeating: 1, count: 20)
+    //MARK:- Performance Test
+    
+    // from: 100 items, to: 120 items (add 20)
+    func testPerformanceOf20ItemsAddedToBottomOf100Items() {
+        let from = Array(repeating: UUID().uuidString, count: 100)
+        let to = from + Array(repeating: UUID().uuidString, count: 20)
+        
         self.measure {
             let _ = Wu().calculate(from: [from], to: [to])
         }
     }
     
-    func testPerformanceOfTwentyElementAddedToMiddle() {
-        let from = Array(repeating: 0, count: 10000) + Array(repeating: 0, count: 10000)
-        let to = Array(repeating: 0, count: 10000) + Array(repeating: 1, count: 20) + Array(repeating: 0, count: 10000)
+    // from: 100 items, to: 200 items (add 100)
+    func testPerformanceOf100ItemsAddedToBottomOf100Items() {
+        let from = Array(repeating: UUID().uuidString, count: 100)
+        let to = from + Array(repeating: UUID().uuidString, count: 100)
+        
         self.measure {
             let _ = Wu().calculate(from: [from], to: [to])
         }
     }
     
-    func testPerformanceOfTwentyElementDeleteOnTop() {
-        let from = Array(repeating: 0, count: 20) + Array(repeating: 1, count: 10000)
-        let to = Array(repeating: 1, count: 10000)
+    // from: 100 items, to: 120 items (add 10 and delete 10)
+    func testPerformanceOf20ItemsAddeAndDeleteOf100Items() {
+        let from = Array(repeating: UUID().uuidString, count: 100)
+        var to = from
+        to.removeSubrange(10..<20)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 10), at: 40)
+
         self.measure {
             let _ = Wu().calculate(from: [from], to: [to])
         }
     }
     
-    func testPerformanceOfTwentyElementDeleteOnMiddle() {
-        let from = Array(repeating: 0, count: 10000) + Array(repeating: 1, count: 20) + Array(repeating: 0, count: 10000)
-        let to = Array(repeating: 0, count: 10000) + Array(repeating: 0, count: 10000)
+    // from: 100 items, to: 150 items (add 50 and delete 50)
+    func testPerformanceOf100ItemsAddeAndDeleteOf100Items() {
+        let from = Array(repeating: UUID().uuidString, count: 100)
+        var to = from
+        to.removeSubrange(50..<100)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 10), at: 50)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+
+    // from: 1000 items, to: 1050 items (add 50)
+    func testPerformanceOf50ItemsAddTo1000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 1000)
+        let to = from + Array(repeating: UUID().uuidString, count: 50)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+
+    // from: 1000 items, to: 1200 items (add 200)
+    func testPerformanceOf200ItemsAddIn1000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 1000)
+        let to = from + Array(repeating: UUID().uuidString, count: 200)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 1000 items, to: 1000 items (add 25 and delete 25)
+    func testPerformanceOf50ItemsAddAndDeleteTo1000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 1000)
+        var to = from
+        to.removeSubrange(50..<75)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 25), at: 75)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 1000 items, to: 1000 items (add 100 and delete 100)
+    func testPerformanceOf200ItemsAddAndDeleteTo1000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 1000)
+        var to = from
+        to.removeSubrange(500..<600)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 100), at: 900)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 10000 items, to: 10100 items (add 100)
+    func testPerformanceOf100ItemsAddIn10000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 10000)
+        let to = from + Array(repeating: UUID().uuidString, count: 100)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 10000 items, to: 10100 items (add 50 and delete 50)
+    func testPerformanceOf50ItemsAddAnd50ItemsDeleteIn10000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 10000)
+        var to = from
+        to.removeSubrange(1000..<1050)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 50), at: 9950)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 10000 items, to: 11000 items (add 2000)
+    func testPerformanceOf2000ItemsAddIn10000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 10000)
+        let to = from + Array(repeating: UUID().uuidString, count: 2000)
+        
+        self.measure {
+            let _ = Wu().calculate(from: [from], to: [to])
+        }
+    }
+    
+    // from: 10000 items, to: 11000 items (add 1000 and delete 1000)
+    func testPerformanceOf2000ItemsAddAndDeleteIn10000Items() {
+        let from = Array(repeating: UUID().uuidString, count: 10000)
+        var to = from
+        to.removeSubrange(1000..<2000)
+        to.insert(contentsOf: Array(repeating: UUID().uuidString, count: 50), at: 9000)
+        
         self.measure {
             let _ = Wu().calculate(from: [from], to: [to])
         }
