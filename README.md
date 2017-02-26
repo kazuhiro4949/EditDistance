@@ -1,4 +1,4 @@
-# EditDistance
+g# EditDistance
 EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
 The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
@@ -47,7 +47,7 @@ tableView.diff.reload(to: container)
 You don't have to manage how to update incrementally. That enables to pileline the process.
 
 # How dose it work?
-EditDistance calculates a difference between two arrays and converts it to the incremental update processes of UITableView or UICollectionView.
+EditDistance calculates a difference between two arrays and converts it into an incremental update processes of UITableView or UICollectionView.
 
 The differences are calculated with **Edit Distance Algorithm**. There are many ways to calculate and almost all of them run in polynominal time.
 
