@@ -218,6 +218,17 @@ Wu's algorithm is recommended in this library. The actual speed depends on the n
 
 Test Cases are [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamintion with them.
 
+# Class Design
+
+![editdistance](https://cloud.githubusercontent.com/assets/18320004/23338894/a77d63d4-fc59-11e6-852b-b1036e215eaf.png)
+
+- **EditDistance** is a director to calculate **EditDistanceAlgorithm** with two input Array.
+- **AnyEditDistanceAlgorithm** is a type-erased structure to **EditDistanceAlgorithm**.
+- **EditDistanceContainer** is a container to bridge result of algorithm and view's update.
+- **EditScriptConverter** is a kind of namespace to use some extensions to UIKit classes.
+- **EditScriptConverterProxy** is a proxy for UITableView and UICollectionView. It has method to update the items.
+
+
 # License
 
 Copyright (c) 2017 Kazuhiro Hayashi
