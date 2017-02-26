@@ -40,7 +40,7 @@ public struct AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Compar
     }
 
     public typealias Element = T
-    public var _calc: ([[T]], [[T]]) -> EditDistanceContainer<T>
+    private let _calc: ([[T]], [[T]]) -> EditDistanceContainer<T>
     
     public init(_ calc: @escaping ([[T]], [[T]]) -> EditDistanceContainer<T>) {
         _calc = calc
