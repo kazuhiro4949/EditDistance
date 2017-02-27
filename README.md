@@ -202,7 +202,7 @@ tableView.diff.reload(with: container)
 ```
 
 # Performance
-Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speed for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays is composed of random UUID Strings.
+Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speeds for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays are composed of random UUID Strings.
 
 - from 100 items to 120 items (only addition), avg: 0.002 sec
 - from 100 items to 120 items (addition and deletion), avg: 0.002 sec
@@ -217,7 +217,7 @@ Wu's algorithm is recommended in this library. The actual speed depends on the n
 - from 10000 items to 12000 items (only addition), avg: 0.105 ms
 - from 10000 items to 12000 items (addition and deletion), avg: 0.194 ms
 
-Test Cases are [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamintion with them.
+Test Cases are [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
 
 # Class Design
 
