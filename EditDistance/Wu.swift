@@ -26,6 +26,8 @@ import Foundation
 
 
 /// Wu's algorithm O(NP)
+///
+/// inspired by (cubicdaiya/gonp)[https://github.com/cubicdaiya/gonp]
 public struct Wu<T: Comparable>: EditDistanceAlgorithm {
     public typealias Element = T
     
