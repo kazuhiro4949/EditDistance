@@ -39,7 +39,7 @@ tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, secti
 tableView.endUpdates()
 ```
 
-EditDistance takes on that task. All you need is to make the updated array.
+EditDistance takes on that task:
 
 ```swift
 // You don't need to write insertion and deletion.
@@ -47,6 +47,8 @@ let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(to: container) 
 ```
+
+All you need is to make the updated array.
 
 You don't have to manage how to update incrementally. That enables to pileline the process.
 
