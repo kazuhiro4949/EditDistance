@@ -56,7 +56,7 @@ You don't have to manage how to update incrementally. That enables to pileline t
 # How dose it work?
 EditDistance calculates a difference between two arrays and converts it into an incremental update of UITableView or UICollectionView.
 
-The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate it and almost all of them nealy run in linear time.
+The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate it and almost all of them nearly run in linear time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
@@ -217,7 +217,7 @@ Wu's algorithm is recommended in this library. The actual speed depends on the n
 - from 10000 items to 12000 items (only addition), avg: 0.105 ms
 - from 10000 items to 12000 items (addition and deletion), avg: 0.194 ms
 
-Test Cases are [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
+Test Case is [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
 
 # Class Design
 
