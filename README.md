@@ -118,6 +118,40 @@ $(SRCROOT)/Carthage/Build/iOS/EditDistance.framework
 Import EditDistance
 ```
 
+### CocoaPods
++ Install CocoaPods
+```
+> gem install cocoapods
+> pod setup
+```
++ Create Podfile
+```
+> pod init
+```
++ Edit Podfile
+```ruby
+# Uncomment this line to define a global platform for your project
+platform :ios, '8.0'  # add
+use_framework!  # add
+
+target 'MyAppName' do
+  pod 'EditDistance' # add
+end
+
+target 'MyAppTests' do
+
+end
+
+target 'MyAppUITests'
+```
+
++ Install
+
+```
+> pod install
+```
+open .xcworkspace
+
 # Usage
 ## Calculation of differences between two arrays
 ### One dimentional array
