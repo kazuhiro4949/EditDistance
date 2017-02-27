@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EditDistance tvOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>EditDistance.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6E0302791E6475D700E24C49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6E0302811E6475D700E24C49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6EBF3E291E58543F0025443A</key>
 		<dict>
 			<key>primary</key>

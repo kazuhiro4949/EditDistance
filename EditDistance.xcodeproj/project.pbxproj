@@ -10,6 +10,21 @@
 		6E0301671E61689200E24C49 /* EditDistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301661E61689200E24C49 /* EditDistanceContainer.swift */; };
 		6E0301691E619DB300E24C49 /* WuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301681E619DB300E24C49 /* WuTests.swift */; };
 		6E03016D1E61A8B000E24C49 /* DynamicProgrammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */; };
+		6E0302831E6475D700E24C49 /* EditDistance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E03027A1E6475D700E24C49 /* EditDistance.framework */; };
+		6E0302911E64763400E24C49 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E901E59C2FB0025443A /* EditDistance.swift */; };
+		6E0302921E64763400E24C49 /* EditDistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301661E61689200E24C49 /* EditDistanceContainer.swift */; };
+		6E0302931E64763400E24C49 /* EditScriptConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E461E5854C70025443A /* EditScriptConverter.swift */; };
+		6E0302941E64763400E24C49 /* EditScriptConverterProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E961E59C3BE0025443A /* EditScriptConverterProxy.swift */; };
+		6E0302951E64763400E24C49 /* EditScriptConverterProxy+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E921E59C3640025443A /* EditScriptConverterProxy+UITableView.swift */; };
+		6E0302961E64763400E24C49 /* EditScriptConverterProxy+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E941E59C3830025443A /* EditScriptConverterProxy+UICollectionView.swift */; };
+		6E0302971E64763400E24C49 /* EditDistanceAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E481E5854FD0025443A /* EditDistanceAlgorithm.swift */; };
+		6E0302981E64763400E24C49 /* EditDistanceAlgorithmContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3EF11E5C79330025443A /* EditDistanceAlgorithmContainer.swift */; };
+		6E0302991E64763400E24C49 /* Wu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E4C1E58553C0025443A /* Wu.swift */; };
+		6E03029A1E64763400E24C49 /* DynamicProgramming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3ED91E5B2BBF0025443A /* DynamicProgramming.swift */; };
+		6E03029B1E64763E00E24C49 /* EditDistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E381E58543F0025443A /* EditDistanceTests.swift */; };
+		6E03029C1E64763E00E24C49 /* WuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0301681E619DB300E24C49 /* WuTests.swift */; };
+		6E03029D1E64763E00E24C49 /* DynamicProgrammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */; };
+		6E03029E1E6476D900E24C49 /* EditDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBF3E2D1E58543F0025443A /* EditDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EBF3E341E58543F0025443A /* EditDistance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBF3E2A1E58543F0025443A /* EditDistance.framework */; };
 		6EBF3E391E58543F0025443A /* EditDistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF3E381E58543F0025443A /* EditDistanceTests.swift */; };
 		6EBF3E3B1E58543F0025443A /* EditDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBF3E2D1E58543F0025443A /* EditDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6E0302841E6475D700E24C49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EBF3E211E58543F0025443A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E0302791E6475D700E24C49;
+			remoteInfo = "EditDistance tvOS";
+		};
 		6EBF3E351E58543F0025443A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EBF3E211E58543F0025443A /* Project object */;
@@ -38,6 +60,8 @@
 		6E0301661E61689200E24C49 /* EditDistanceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistanceContainer.swift; sourceTree = "<group>"; };
 		6E0301681E619DB300E24C49 /* WuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WuTests.swift; sourceTree = "<group>"; };
 		6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProgrammingTests.swift; sourceTree = "<group>"; };
+		6E03027A1E6475D700E24C49 /* EditDistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EditDistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EditDistance tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBF3E2A1E58543F0025443A /* EditDistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EditDistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBF3E2D1E58543F0025443A /* EditDistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		6EBF3E2E1E58543F0025443A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +80,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6E0302761E6475D700E24C49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E03027F1E6475D700E24C49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E0302831E6475D700E24C49 /* EditDistance.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EBF3E261E58543F0025443A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +138,8 @@
 			children = (
 				6EBF3E2A1E58543F0025443A /* EditDistance.framework */,
 				6EBF3E331E58543F0025443A /* EditDistanceTests.xctest */,
+				6E03027A1E6475D700E24C49 /* EditDistance.framework */,
+				6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +182,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		6E0302771E6475D700E24C49 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E03029E1E6476D900E24C49 /* EditDistance.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EBF3E271E58543F0025443A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,6 +201,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		6E0302791E6475D700E24C49 /* EditDistance tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E03028F1E6475D700E24C49 /* Build configuration list for PBXNativeTarget "EditDistance tvOS" */;
+			buildPhases = (
+				6E0302751E6475D700E24C49 /* Sources */,
+				6E0302761E6475D700E24C49 /* Frameworks */,
+				6E0302771E6475D700E24C49 /* Headers */,
+				6E0302781E6475D700E24C49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EditDistance tvOS";
+			productName = "EditDistance tvOS";
+			productReference = 6E03027A1E6475D700E24C49 /* EditDistance.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6E0302811E6475D700E24C49 /* EditDistance tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E0302901E6475D700E24C49 /* Build configuration list for PBXNativeTarget "EditDistance tvOSTests" */;
+			buildPhases = (
+				6E03027E1E6475D700E24C49 /* Sources */,
+				6E03027F1E6475D700E24C49 /* Frameworks */,
+				6E0302801E6475D700E24C49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E0302851E6475D700E24C49 /* PBXTargetDependency */,
+			);
+			name = "EditDistance tvOSTests";
+			productName = "EditDistance tvOSTests";
+			productReference = 6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6EBF3E291E58543F0025443A /* EditDistance */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6EBF3E3E1E58543F0025443A /* Build configuration list for PBXNativeTarget "EditDistance" */;
@@ -198,6 +283,16 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Kazuhiro Hayashi";
 				TargetAttributes = {
+					6E0302791E6475D700E24C49 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = R33Y42SDDR;
+						ProvisioningStyle = Automatic;
+					};
+					6E0302811E6475D700E24C49 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = R33Y42SDDR;
+						ProvisioningStyle = Automatic;
+					};
 					6EBF3E291E58543F0025443A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = R33Y42SDDR;
@@ -225,11 +320,27 @@
 			targets = (
 				6EBF3E291E58543F0025443A /* EditDistance */,
 				6EBF3E321E58543F0025443A /* EditDistanceTests */,
+				6E0302791E6475D700E24C49 /* EditDistance tvOS */,
+				6E0302811E6475D700E24C49 /* EditDistance tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6E0302781E6475D700E24C49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E0302801E6475D700E24C49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EBF3E281E58543F0025443A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +358,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6E0302751E6475D700E24C49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E0302911E64763400E24C49 /* EditDistance.swift in Sources */,
+				6E0302921E64763400E24C49 /* EditDistanceContainer.swift in Sources */,
+				6E0302931E64763400E24C49 /* EditScriptConverter.swift in Sources */,
+				6E0302941E64763400E24C49 /* EditScriptConverterProxy.swift in Sources */,
+				6E0302951E64763400E24C49 /* EditScriptConverterProxy+UITableView.swift in Sources */,
+				6E0302961E64763400E24C49 /* EditScriptConverterProxy+UICollectionView.swift in Sources */,
+				6E0302971E64763400E24C49 /* EditDistanceAlgorithm.swift in Sources */,
+				6E0302981E64763400E24C49 /* EditDistanceAlgorithmContainer.swift in Sources */,
+				6E0302991E64763400E24C49 /* Wu.swift in Sources */,
+				6E03029A1E64763400E24C49 /* DynamicProgramming.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E03027E1E6475D700E24C49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E03029B1E64763E00E24C49 /* EditDistanceTests.swift in Sources */,
+				6E03029C1E64763E00E24C49 /* WuTests.swift in Sources */,
+				6E03029D1E64763E00E24C49 /* DynamicProgrammingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EBF3E251E58543F0025443A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +415,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6E0302851E6475D700E24C49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E0302791E6475D700E24C49 /* EditDistance tvOS */;
+			targetProxy = 6E0302841E6475D700E24C49 /* PBXContainerItemProxy */;
+		};
 		6EBF3E361E58543F0025443A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6EBF3E291E58543F0025443A /* EditDistance */;
@@ -285,6 +428,80 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6E03028B1E6475D700E24C49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = R33Y42SDDR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EditDistance/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOS";
+				PRODUCT_NAME = EditDistance;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		6E03028C1E6475D700E24C49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = R33Y42SDDR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EditDistance/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOS";
+				PRODUCT_NAME = EditDistance;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		6E03028D1E6475D700E24C49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = R33Y42SDDR;
+				INFOPLIST_FILE = "EditDistance tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		6E03028E1E6475D700E24C49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = R33Y42SDDR;
+				INFOPLIST_FILE = "EditDistance tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
 		6EBF3E3C1E58543F0025443A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -456,6 +673,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6E03028F1E6475D700E24C49 /* Build configuration list for PBXNativeTarget "EditDistance tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E03028B1E6475D700E24C49 /* Debug */,
+				6E03028C1E6475D700E24C49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6E0302901E6475D700E24C49 /* Build configuration list for PBXNativeTarget "EditDistance tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E03028D1E6475D700E24C49 /* Debug */,
+				6E03028E1E6475D700E24C49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6EBF3E241E58543F0025443A /* Build configuration list for PBXProject "EditDistance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
