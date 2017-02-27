@@ -53,7 +53,7 @@ All you need is to make the updated array.
 You don't have to manage how to update incrementally. That enables to pileline the process.
 
 # How dose it work?
-EditDistance calculates a difference between two arrays and converts it into an incremental update of UITableView or UICollectionView.
+EditDistance calculates the difference and converts it into an incremental update of UITableView or UICollectionView.
 
 The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate it and almost all of them nearly run in linear time.
 
@@ -62,7 +62,7 @@ The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.or
 - Wu's Algorithm (*O(NP)*)
 - etc.
 
-*N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
+*N* and *M* are sequence sizes of each array. *D* is edit distance and *P* is the number of deletion.
 
 In our context, Wu's Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and adds (or deletes) a few items. (e.g. autopager, access history and notification)
 
