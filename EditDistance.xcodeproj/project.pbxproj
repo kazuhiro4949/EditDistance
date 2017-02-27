@@ -61,7 +61,7 @@
 		6E0301681E619DB300E24C49 /* WuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WuTests.swift; sourceTree = "<group>"; };
 		6E03016C1E61A8B000E24C49 /* DynamicProgrammingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProgrammingTests.swift; sourceTree = "<group>"; };
 		6E03027A1E6475D700E24C49 /* EditDistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EditDistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EditDistance tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E0302821E6475D700E24C49 /* EditDistance.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EditDistance.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBF3E2A1E58543F0025443A /* EditDistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EditDistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBF3E2D1E58543F0025443A /* EditDistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		6EBF3E2E1E58543F0025443A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				6EBF3E2A1E58543F0025443A /* EditDistance.framework */,
 				6EBF3E331E58543F0025443A /* EditDistanceTests.xctest */,
 				6E03027A1E6475D700E24C49 /* EditDistance.framework */,
-				6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */,
+				6E0302821E6475D700E24C49 /* EditDistance.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +234,7 @@
 			);
 			name = "EditDistance tvOSTests";
 			productName = "EditDistance tvOSTests";
-			productReference = 6E0302821E6475D700E24C49 /* EditDistance tvOSTests.xctest */;
+			productReference = 6E0302821E6475D700E24C49 /* EditDistance.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6EBF3E291E58543F0025443A /* EditDistance */ = {
@@ -477,10 +477,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = R33Y42SDDR;
-				INFOPLIST_FILE = "EditDistance tvOSTests/Info.plist";
+				INFOPLIST_FILE = EditDistance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EditDistance;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
@@ -492,10 +492,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = R33Y42SDDR;
-				INFOPLIST_FILE = "EditDistance tvOSTests/Info.plist";
+				INFOPLIST_FILE = EditDistance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kazuhiro.hayashi.EditDistance-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EditDistance;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
@@ -680,6 +680,7 @@
 				6E03028C1E6475D700E24C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E0302901E6475D700E24C49 /* Build configuration list for PBXNativeTarget "EditDistance tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -688,6 +689,7 @@
 				6E03028E1E6475D700E24C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6EBF3E241E58543F0025443A /* Build configuration list for PBXProject "EditDistance" */ = {
 			isa = XCConfigurationList;
