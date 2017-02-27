@@ -237,18 +237,18 @@ tableView.diff.reload(with: container)
 # Performance
 Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speeds for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays are composed of random UUID Strings.
 
-- from 100 items to 120 items (only addition), avg: 0.002 sec
-- from 100 items to 120 items (addition and deletion), avg: 0.002 sec
-- from 100 items to 200 items (only addition), avg: 0.003 ms
-- from 100 items to 200 items (addition and deletion), avg: 0.003 sec
-- from 1000 items to 1050 items (only addition), avg: 0.010 sec
-- from 1000 items to 1050 items (addition and deletion), avg: 0.011 sec
-- from 1000 items to 1200 items (only addition), avg: 0.010 sec
-- from 1000 items to 1200 items (addition and deletion), avg: 0.030 sec
-- from 10000 items to 10100 items (only addition), avg: 0.080 sec
-- from 10000 items to 10100 items (addition and deletion), avg: 0.088 sec
-- from 10000 items to 12000 items (only addition), avg: 0.105 sec
-- from 10000 items to 12000 items (addition and deletion), avg: 0.194 sec
+- from 100 items to 120 items (20 addition), avg: 0.002 sec
+- from 100 items to 100 items (10 addition and 10 deletion), avg: 0.002 sec
+- from 100 items to 200 items (100 addition), avg: 0.003 ms
+- from 100 items to 100 items (50 addition and 50 deletion), avg: 0.003 sec
+- from 1000 items to 1050 items (50 addition), avg: 0.010 sec
+- from 1000 items to 1000 items (25 addition and 25 deletion), avg: 0.011 sec
+- from 1000 items to 1200 items (200 addition), avg: 0.010 sec
+- from 1000 items to 1000 items (100 addition and 100 deletion), avg: 0.030 sec
+- from 10000 items to 10100 items (100 addition), avg: 0.080 sec
+- from 10000 items to 10000 items (50 addition and 50 deletion), avg: 0.088 sec
+- from 10000 items to 12000 items (2000 addition), avg: 0.105 sec
+- from 10000 items to 10000 items (1000 addition and 1000 deletion), avg: 0.194 sec
 
 Test Case is [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
 
