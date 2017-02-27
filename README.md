@@ -17,16 +17,22 @@ The followings show how this library update UI. They generate the random items a
 # What's this?
 This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between two data sources.
 
-Typical code:
+If you update items for DataSource:
 ```swift
-var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
+// dataSource has ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
+var nextDataSource = dataSource
 
 // insertion and deletion to data source
-dataSource.remove(at: 2)
-dataSource.insert("Woodruff Chester", at: 1)
-dataSource.insert("Eduard Colby", at: 3)
+nextDataSource.remove(at: 2)
+nextDataSource.insert("Woodruff Chester", at: 1)
+nextDataSource.insert("Eduard Colby", at: 3)
+```
 
+Typical code:
+
+```swift
 // You have to update UITableView according to array's diff.
+dataSource = nextDataSource
 tableView.beginUpdates()
 tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
 tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, section: 0)], with: .fade)
@@ -36,19 +42,10 @@ tableView.endUpdates()
 EditDistance takes on that task. All you need is to make the updated array.
 
 ```swift
-var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
-var nextDataSource = dataSource
-
-// insertion and deletion to data source
-nextDataSource.remove(at: 2)
-nextDataSource.insert("Woodruff Chester", at: 1)
-nextDataSource.insert("Eduard Colby", at: 3)
-
 // You don't need to write insertion and deletion.
 let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(to: container) 
-
 ```
 
 You don't have to manage how to update incrementally. That enables to pileline the process.
