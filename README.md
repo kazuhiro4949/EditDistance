@@ -1,67 +1,73 @@
 # EditDistance
 EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
-The followings show how this library update UI. They generate random elements for the data source and update UI incrementally.
+[![Platform](https://img.shields.io/cocoapods/p/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg)
+[![License](https://img.shields.io/cocoapods/l/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+[![Version](https://img.shields.io/cocoapods/v/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+
+The followings show how this library update UI. They generate the random items and update their UI incrementally.
 
 | UITableView | UICollectionView |
 |---|---|
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
 # What's this?
-This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update UITableView or UICollectionView incrementally, because iOS app developers need to manage differences between two data sources.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between two data sources.
 
-Typical code:
+If you update items for DataSource:
 ```swift
-var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
-
-// insertion and deletion to data source
-dataSource.remove(at: 2)
-dataSource.insert("Woodruff Chester", at: 1)
-dataSource.insert("Eduard Colby", at: 3)
-
-// You have to update UITableView according to array's diff.
-tableView.beginUpdates()
-tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
-tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, section: 0)], with: .fade)
-tableView.endUpdates()
-```
-
-EditDistance takes on that task. All you need is to make the updated array.
-
-```swift
-var dataSource = ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
+// dataSource has ["Francis Elton", "Stanton Denholm", "Arledge Camden", "Farland Ridley", "Alex Helton"]
 var nextDataSource = dataSource
 
 // insertion and deletion to data source
 nextDataSource.remove(at: 2)
 nextDataSource.insert("Woodruff Chester", at: 1)
 nextDataSource.insert("Eduard Colby", at: 3)
+```
 
+Typical code:
+
+```swift
+// You have to update UITableView according to array's diff.
+dataSource = nextDataSource
+tableView.beginUpdates()
+tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
+tableView.insertRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 3, section: 0)], with: .fade)
+tableView.endUpdates()
+```
+
+EditDistance takes on that task:
+
+```swift
 // You don't need to write insertion and deletion.
 let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(to: container) 
-
 ```
+
+All you need is to make the updated array.
 
 You don't have to manage how to update incrementally. That enables to pileline the process.
 
 # How dose it work?
-EditDistance calculates a difference between two arrays and converts it into an incremental update processes of UITableView or UICollectionView.
+EditDistance calculates the difference and converts it into an incremental update of UITableView or UICollectionView.
 
-The differences are calculated with [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate and almost all of them run in polynominal time.
+The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate it and almost all of them nearly run in linear time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
 - Wu's Algorithm (*O(NP)*)
 - etc.
 
-*N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
+*N* and *M* are sequence sizes of each array. *D* is edit distance and *P* is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager, access history or notification)
+In our context, Wu's Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and adds (or deletes) a few items. (e.g. autopager, access history and notification)
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in background and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -112,8 +118,42 @@ $(SRCROOT)/Carthage/Build/iOS/EditDistance.framework
 Import EditDistance
 ```
 
+### CocoaPods
++ Install CocoaPods
+```
+> gem install cocoapods
+> pod setup
+```
++ Create Podfile
+```
+> pod init
+```
++ Edit Podfile
+```ruby
+# Uncomment this line to define a global platform for your project
+platform :ios, '8.0'  # add
+use_framework!  # add
+
+target 'MyAppName' do
+  pod 'EditDistance' # add
+end
+
+target 'MyAppTests' do
+
+end
+
+target 'MyAppUITests'
+```
+
++ Install
+
+```
+> pod install
+```
+open .xcworkspace
+
 # Usage
-## Calculation differences between two arrays
+## Calculation of differences between two arrays
 ### One dimentional array
 #### 1. prepare two arrays.
 ```swift
@@ -195,22 +235,33 @@ tableView.diff.reload(with: container)
 ```
 
 # Performance
-Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speed for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays is composed of random UUID Strings.
+Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speeds for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays are composed of random UUID Strings.
 
-- from 100 items to 120 items (only addition), avg: 0.002 sec
-- from 100 items to 120 items (addition and deletion), avg: 0.002 sec
-- from 100 items to 200 items (only addition), avg: 0.003 ms
-- from 100 items to 200 items (addition and deletion), avg: 0.003 ms
-- from 1000 items to 1050 items (only addition), avg: 0.010 sec
-- from 1000 items to 1050 items (addition and deletion), avg: 0.011 sec
-- from 1000 items to 1200 items (only addition), avg: 0.010 sec
-- from 1000 items to 1200 items (addition and deletion), avg: 0.030 ms
-- from 10000 items to 10100 items (only addition), avg: 0.080 ms
-- from 10000 items to 10100 items (addition and deletion), avg: 0.088 0ms
-- from 10000 items to 12000 items (only addition), avg: 0.105 ms
-- from 10000 items to 12000 items (addition and deletion), avg: 0.194 ms
+- from 100 items to 120 items (20 addition), avg: 0.002 sec
+- from 100 items to 100 items (10 addition and 10 deletion), avg: 0.002 sec
+- from 100 items to 200 items (100 addition), avg: 0.003 ms
+- from 100 items to 100 items (50 addition and 50 deletion), avg: 0.003 sec
+- from 1000 items to 1050 items (50 addition), avg: 0.010 sec
+- from 1000 items to 1000 items (25 addition and 25 deletion), avg: 0.011 sec
+- from 1000 items to 1200 items (200 addition), avg: 0.010 sec
+- from 1000 items to 1000 items (100 addition and 100 deletion), avg: 0.030 sec
+- from 10000 items to 10100 items (100 addition), avg: 0.080 sec
+- from 10000 items to 10000 items (50 addition and 50 deletion), avg: 0.088 sec
+- from 10000 items to 12000 items (2000 addition), avg: 0.105 sec
+- from 10000 items to 10000 items (1000 addition and 1000 deletion), avg: 0.194 sec
 
-Test Cases are [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamintion with them.
+Test Case is [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
+
+# Class Design
+
+![editdistance](https://cloud.githubusercontent.com/assets/18320004/23338894/a77d63d4-fc59-11e6-852b-b1036e215eaf.png)
+
+- **EditDistance** is a director to calculate **EditDistanceAlgorithm** with two input Array.
+- **AnyEditDistanceAlgorithm** is a type-erased structure to **EditDistanceAlgorithm**.
+- **EditDistanceContainer** is a container to bridge result of algorithm and view's update.
+- **EditScriptConverter** is a kind of namespace to use some extensions to UIKit classes.
+- **EditScriptConverterProxy** is a proxy for UITableView and UICollectionView. It has method to update the items.
+
 
 # License
 
