@@ -56,7 +56,7 @@ You don't have to manage how to update incrementally. That enables to pileline t
 # How dose it work?
 EditDistance calculates a difference between two arrays and converts it into an incremental update of UITableView or UICollectionView.
 
-The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate and almost all of them nealy run in linear time.
+The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.org/wiki/Edit_distance). There are many ways to calculate it and almost all of them nealy run in linear time.
 
 - Dynamic Programming (*O(NM)*)
 - Mayer's Algorithm (*O(ND)*)
@@ -65,10 +65,10 @@ The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.or
 
 *N* and M is sequence sizes of each array. D is edit distance and P is the number of deletion.
 
-In our context, Wu' Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager, access history or notification)
+In our context, Wu's Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and add or delete a few items. (e.g. autopager, access history and notification)
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommend that your app calculate edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in background and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -120,7 +120,7 @@ Import EditDistance
 ```
 
 # Usage
-## Calculation differences between two arrays
+## Calculation of differences between two arrays
 ### One dimentional array
 #### 1. prepare two arrays.
 ```swift
