@@ -16,7 +16,7 @@ The followings show how this library update UI. They generate the random items a
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
 # What's this?
-This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between the the two DataSources.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between the two DataSources.
 
 If you update items for DataSource:
 ```swift
