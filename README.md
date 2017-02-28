@@ -223,7 +223,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
 
 ## Incremental Update to UITableView
 
-### 1 Calculate Diff between two arrays
+### 1. Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
 let container = dataSource.diff.compare(to: nextDataSource)
@@ -234,6 +234,15 @@ let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(with: container) 
 ```
+
+## If　you won't use this library anymore
+```swift
+ataSource = nextDataSource
+// tableView.diff.reload(with: container) 
+tableView.reloadData()
+```
+
+That's it! :wink:
 
 # Performance
 Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speeds for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays are composed of random UUID Strings.
