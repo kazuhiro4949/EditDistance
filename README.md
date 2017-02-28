@@ -235,7 +235,7 @@ dataSource = nextDataSource
 tableView.diff.reload(with: container) 
 ```
 
-## If　you won't use this library anymore
+## If you won't use this library anymore
 ```swift
 ataSource = nextDataSource
 // tableView.diff.reload(with: container) 
