@@ -68,7 +68,7 @@ The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.or
 In our context, Wu's Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and adds (or deletes) a few items. (e.g. autopager, access history and notification)
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in sub thread and update UI in main thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
