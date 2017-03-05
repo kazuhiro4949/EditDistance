@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E0302811E6475D700E24C49"
-               BuildableName = "EditDistance tvOSTests.xctest"
+               BuildableName = "EditDistance.xctest"
                BlueprintName = "EditDistance tvOSTests"
                ReferencedContainer = "container:EditDistance.xcodeproj">
             </BuildableReference>
