@@ -24,7 +24,7 @@
 
 import UIKit
 
-public protocol EditScriptConverter {}
+public protocol EditScriptConverter: class {}
 
 public extension EditScriptConverter {
     public var diff: EditScriptConverterProxy<Self> {

@@ -25,7 +25,7 @@
 import Foundation
 
 
-public class EditScriptConverterProxy<Converter: EditScriptConverter> {
+public final class EditScriptConverterProxy<Converter: EditScriptConverter> {
     let _converter: Converter
     
     public init(_ converter: Converter) {
