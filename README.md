@@ -2,7 +2,8 @@
 EditDistance is one of the incremental update tool for UITableView and UICollectionView. 
 
 [![Platform](https://img.shields.io/cocoapods/p/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
-![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg)
+[![Platform](https://img.shields.io/badge/platform-tvos-lightgrey.svg)](http://cocoapods.org/pods/EditDistance)
+![Swift 3.0+](https://img.shields.io/badge/Swift-3.0+-orange.svg)
 [![License](https://img.shields.io/cocoapods/l/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
 [![Version](https://img.shields.io/cocoapods/v/EditDistance.svg?style=flat)](http://cocoapods.org/pods/EditDistance)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -15,7 +16,7 @@ The followings show how this library update UI. They generate the random items a
 | ![tableview](https://cloud.githubusercontent.com/assets/18320004/23104148/adbfb22c-f70b-11e6-80bc-97fb1bac7bbc.gif)  | ![collectionview 1](https://cloud.githubusercontent.com/assets/18320004/23104147/ab1a6d00-f70b-11e6-921b-e328153306fd.gif)  |
 
 # What's this?
-This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between two data sources.
+This library pipelines the process to update UITableView and UICollectionView. It is so difficult to update them incrementally, because iOS app developers need to manage differences between the two DataSources.
 
 If you update items for DataSource:
 ```swift
@@ -67,7 +68,7 @@ The difference is based on [**Edit Distance Algorithm**](https://en.wikipedia.or
 In our context, Wu's Algorithm seems to be the best algorithm. It has better performance than the others when your app has many items and adds (or deletes) a few items. (e.g. autopager, access history and notification)
 
 # Pros and Cons
-Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in background and update UI in main thread.
+Calculation in this library is not always reasonable to update UI. I recommend that your app calculates edit distance in sub-thread and update UI in main-thread.
 
 # Feature
 - [x] You don't need to calculate diff manually.
@@ -222,7 +223,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
 
 ## Incremental Update to UITableView
 
-### 1 Calculate Diff between two arrays
+### 1. Calculate Diff between two arrays
 ```swift
 let nextDataSource = ["Francis Elton", "Woodruff Chester", "Stanton Denholm", "Eduard Colby", "Farland Ridley", "Alex Helton"]
 let container = dataSource.diff.compare(to: nextDataSource)
@@ -233,6 +234,15 @@ let container = dataSource.diff.compare(to: nextDataSource)
 dataSource = nextDataSource
 tableView.diff.reload(with: container) 
 ```
+
+## If you won't use this library anymore
+```swift
+ataSource = nextDataSource
+// tableView.diff.reload(with: container) 
+tableView.reloadData()
+```
+
+That's it! :wink:
 
 # Performance
 Wu's algorithm is recommended in this library. The actual speed depends on the number of differences between two arrays and the cost of "==" the elements have. The followings are some avarage speeds for reference. They were executed on iPhone7, iOS 10.2 Simulator. The sample arrays are composed of random UUID Strings.
