@@ -110,8 +110,10 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         
         var pxIdx = 0, pyIdx = 0
         for i in stride(from: epc.count - 1, to: -1, by: -1) {
-            while (pxIdx < epc[i]!.x) || (pyIdx < epc[i]!.y) {
-                if (epc[i]!.y - epc[i]!.x) > (pyIdx - pxIdx) {
+            let epcPx = epc[i]!.x
+            let epcPy = epc[i]!.y
+            while (pxIdx < epcPx) || (pyIdx < epcPy) {
+                if (epcPy - epcPx) > (pyIdx - pxIdx) {
                     let elem = yAxis[pyIdx]
                     if ctl.reverse {
                         editScript.append(.delete(element: elem.element, indexPath: elem.indexPath))
@@ -119,7 +121,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                         editScript.append(.add(element: elem.element, indexPath: elem.indexPath))
                     }
                     pyIdx += 1
-                } else if (epc[i]!.y - epc[i]!.x) < (pyIdx - pxIdx) {
+                } else if (epcPy - epcPx) < (pyIdx - pxIdx) {
                     let elem = xAxis[pxIdx]
                     if ctl.reverse {
                         editScript.append(.add(element: elem.element, indexPath: elem.indexPath))
