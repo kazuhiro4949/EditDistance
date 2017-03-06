@@ -63,6 +63,9 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         ctl.path = Array(repeating: -1, count: size)
         ctl.pathPosition = [:]
         
+        let xAxisCount = xAxis.count
+        let yAxisCount = yAxis.count
+        
         var p = 0
         while(true) {
             if -p <= delta {
@@ -70,7 +73,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                     ctl.path[k + offset] = ctl.pathPosition.count
                     let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, k: k, y: kRes.y, r: kRes.r)
+                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
@@ -79,14 +82,14 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                     ctl.path[k + offset] = ctl.pathPosition.count
                     let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, k: k, y: kRes.y, r: kRes.r)
+                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
             ctl.path[delta + offset] = ctl.pathPosition.count
             let deltaResult = calcFootPrint(ctl: ctl, fp: fp, index: delta + offset)
             
-            (fp[delta + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, k: delta, y: deltaResult.y, r: deltaResult.r)
+            (fp[delta + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: delta, y: deltaResult.y, r: deltaResult.r)
             
             if fp[delta + offset] >= yAxis.count {
                 break
@@ -152,11 +155,11 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return (r, max(lsP, rsP))
     }
     
-    private func snake<T: Comparable>(xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>], k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
+    private func snake<T: Comparable>(xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>], xAxisCount: Int, yAxisCount: Int, k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
         var y = y
         var x = y - k
         
-        while(x < xAxis.count && y < yAxis.count && xAxis[x] == yAxis[y]) {
+        while(x < xAxisCount && y < yAxisCount && xAxis[x] == yAxis[y]) {
             x += 1
             y += 1
         }
