@@ -44,27 +44,34 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                 return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
             }
         }
-        let xAxis: [EditDistanceAlgorithmContainer<T>]
-        let yAxis: [EditDistanceAlgorithmContainer<T>]
+
+        let xAxisPointer: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>
+        let yAxisPointer: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>
+        
+        let xAxisCount: Int
+        let yAxisCount: Int
+        
         var ctl: Ctl
         if _from.count >= _to.count {
-            xAxis = _to
-            yAxis = _from
+            xAxisPointer = UnsafeMutablePointer(mutating: _to)
+            yAxisPointer = UnsafeMutablePointer(mutating: _from)
+            xAxisCount = _to.count
+            yAxisCount = _from.count
             ctl = Ctl(reverse: true, path: [], pathPosition: [:])
         } else {
-            xAxis = _from
-            yAxis = _to
+            xAxisPointer = UnsafeMutablePointer(mutating: _from)
+            yAxisPointer = UnsafeMutablePointer(mutating: _to)
+            xAxisCount = _from.count
+            yAxisCount = _to.count
             ctl = Ctl(reverse: false, path: [], pathPosition: [:])
         }
-        let offset = xAxis.count + 1
-        let delta = yAxis.count - xAxis.count
-        let size = xAxis.count + yAxis.count + 3
+        let offset = xAxisCount + 1
+        let delta = yAxisCount - xAxisCount
+        let size = xAxisCount + yAxisCount + 3
         var fp = Array(repeating: -1, count: size)
         ctl.path = Array(repeating: -1, count: size)
         ctl.pathPosition = [:]
-        
-        let xAxisCount = xAxis.count
-        let yAxisCount = yAxis.count
+
         
         var p = 0
         while(true) {
@@ -73,7 +80,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                     ctl.path[k + offset] = ctl.pathPosition.count
                     let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
+                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
@@ -82,16 +89,16 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                     ctl.path[k + offset] = ctl.pathPosition.count
                     let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
+                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
             ctl.path[delta + offset] = ctl.pathPosition.count
             let deltaResult = calcFootPrint(ctl: ctl, fp: fp, index: delta + offset)
             
-            (fp[delta + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxis, yAxis: yAxis, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: delta, y: deltaResult.y, r: deltaResult.r)
+            (fp[delta + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: delta, y: deltaResult.y, r: deltaResult.r)
             
-            if fp[delta + offset] >= yAxis.count {
+            if fp[delta + offset] >= yAxisCount {
                 break
             }
             
@@ -105,10 +112,10 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
             r = ctl.pathPosition[r]!.k
         }
         
-        return EditDistanceContainer(editScripts: traceBack(epc: epc, ctl: ctl, xAxis: xAxis, yAxis: yAxis))
+        return EditDistanceContainer(editScripts: traceBack(epc: epc, ctl: ctl, xAxis: xAxisPointer, yAxis: yAxisPointer))
     }
     
-    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>]) -> [EditScript<T>] {
+    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>) -> [EditScript<T>] {
         var editScript = [EditScript<T>]()
         
         var pxIdx = 0, pyIdx = 0
@@ -155,7 +162,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return (r, max(lsP, rsP))
     }
     
-    private func snake<T: Comparable>(xAxis: [EditDistanceAlgorithmContainer<T>], yAxis: [EditDistanceAlgorithmContainer<T>], xAxisCount: Int, yAxisCount: Int, k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
+    private func snake<T: Comparable>(xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, xAxisCount: Int, yAxisCount: Int, k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
         var y = y
         var x = y - k
         
