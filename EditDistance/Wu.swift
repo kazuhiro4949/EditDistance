@@ -57,19 +57,24 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
             yAxisPointer = UnsafeMutablePointer(mutating: _from)
             xAxisCount = _to.count
             yAxisCount = _from.count
-            ctl = Ctl(reverse: true, path: [], pathPosition: [:])
+            ctl = Ctl(reverse: true, path: UnsafeMutablePointer<Int>.allocate(capacity: 0), pathPosition: [:])
         } else {
             xAxisPointer = UnsafeMutablePointer(mutating: _from)
             yAxisPointer = UnsafeMutablePointer(mutating: _to)
             xAxisCount = _from.count
             yAxisCount = _to.count
-            ctl = Ctl(reverse: false, path: [], pathPosition: [:])
+            ctl = Ctl(reverse: false, path: UnsafeMutablePointer<Int>.allocate(capacity: 0), pathPosition: [:])
         }
         let offset = xAxisCount + 1
         let delta = yAxisCount - xAxisCount
+        let tailIdx = delta + offset
         let size = xAxisCount + yAxisCount + 3
-        var fp = Array(repeating: -1, count: size)
-        ctl.path = Array(repeating: -1, count: size)
+        
+        let fpBuffer = UnsafeMutablePointer<Int>.allocate(capacity: size)
+        fpBuffer.initialize(to: -1, count: size)
+        
+        ctl.path = UnsafeMutablePointer<Int>.allocate(capacity: size)
+        ctl.path.initialize(to: -1, count: size)
         ctl.pathPosition = [:]
 
         
@@ -78,34 +83,34 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
             if -p <= delta {
                 for k in -p..<delta {
                     ctl.path[k + offset] = ctl.pathPosition.count
-                    let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
+                    let kRes = calcFootPrint(ctl: ctl, fp: fpBuffer, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
+                    (fpBuffer[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
             if delta <= delta + p {
                 for k in stride(from: delta + p, to: delta, by: -1) {
                     ctl.path[k + offset] = ctl.pathPosition.count
-                    let kRes = calcFootPrint(ctl: ctl, fp: fp, index: k + offset)
+                    let kRes = calcFootPrint(ctl: ctl, fp: fpBuffer, index: k + offset)
                     
-                    (fp[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
+                    (fpBuffer[k + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: k, y: kRes.y, r: kRes.r)
                 }
             }
             
-            ctl.path[delta + offset] = ctl.pathPosition.count
-            let deltaResult = calcFootPrint(ctl: ctl, fp: fp, index: delta + offset)
+            ctl.path[tailIdx] = ctl.pathPosition.count
+            let deltaResult = calcFootPrint(ctl: ctl, fp: fpBuffer, index: tailIdx)
             
-            (fp[delta + offset], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: delta, y: deltaResult.y, r: deltaResult.r)
+            (fpBuffer[tailIdx], ctl.pathPosition[ctl.pathPosition.count]) = snake(xAxis: xAxisPointer, yAxis: yAxisPointer, xAxisCount: xAxisCount, yAxisCount: yAxisCount, k: delta, y: deltaResult.y, r: deltaResult.r)
             
-            if fp[delta + offset] >= yAxisCount {
+            if fpBuffer[tailIdx] >= yAxisCount {
                 break
             }
             
             p += 1
         }
         
-        var r = ctl.path[delta + offset]
+        var r = ctl.path[tailIdx]
         var epc = [Int: Point]()
         while (r != -1) {
             epc[epc.count] = Point(x: ctl.pathPosition[r]!.x, y: ctl.pathPosition[r]!.y, k: -1)
@@ -155,7 +160,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return editScript
     }
     
-    private func calcFootPrint(ctl: Ctl, fp: [Int], index: Int) -> (r: Int, y: Int) {
+    private func calcFootPrint(ctl: Ctl, fp: UnsafeMutablePointer<Int>, index: Int) -> (r: Int, y: Int) {
         let lsP = fp[index - 1] + 1
         let rsP = fp[index + 1]
         let r = lsP > rsP ? ctl.path[index - 1] : ctl.path[index + 1]
@@ -183,6 +188,6 @@ private struct Point {
 
 private struct Ctl {
     let reverse: Bool
-    var path : [Int]
+    var path : UnsafeMutablePointer<Int>
     var pathPosition: [Int: Point]
 }
