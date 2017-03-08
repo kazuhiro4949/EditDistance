@@ -45,9 +45,11 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
                     break
                 }
                 
+                let toICnt = to[i].count
+                let fromICnt = from[i].count
                 while true {
-                    let enableAccessToElem = (i < toCnt && j < to[i].count)
-                    let enableAccessFromElem =  (i < fromCnt && j < from[i].count)
+                    let enableAccessToElem = j < toICnt
+                    let enableAccessFromElem = j < fromICnt
                     guard enableAccessToElem || enableAccessFromElem else {
                         break
                     }
