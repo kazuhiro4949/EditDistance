@@ -34,35 +34,53 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
     public init() {}
 
     public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
-        let _to = to.enumerated().flatMap { (firstIdx, ary) in
-            return ary.enumerated().flatMap { (secondIdx, elm) in
-                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
-            }
-        }
-        let _from = from.enumerated().flatMap { (firstIdx, ary) in
-            return ary.enumerated().flatMap { (secondIdx, elm) in
-                return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondIdx, section: firstIdx), element: elm)
+        var flattenTo = Array<EditDistanceAlgorithmContainer<T>>()
+        var flattenFrom = Array<EditDistanceAlgorithmContainer<T>>()
+        do {
+            var i: Int = 0, j: Int = 0
+            let toCnt   = to.count
+            let fromCnt = from.count
+            while true {
+                guard i < toCnt || i < fromCnt else {
+                    break
+                }
+                
+                while true {
+                    let enableAccessToElem = (i < toCnt && j < to[i].count)
+                    let enableAccessFromElem =  (i < fromCnt && j < from[i].count)
+                    guard enableAccessToElem || enableAccessFromElem else {
+                        break
+                    }
+                    
+                    if enableAccessToElem {
+                        flattenTo.append(EditDistanceAlgorithmContainer(indexPath: IndexPath(row: j, section: i), element: to[i][j]))
+                    }
+                    
+                    if enableAccessFromElem {
+                        flattenFrom.append(EditDistanceAlgorithmContainer(indexPath: IndexPath(row: j, section: i), element: from[i][j]))
+                    }
+                    j += 1
+                }
+                i += 1
             }
         }
 
         let xAxisPointer: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>
         let yAxisPointer: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>
-        
         let xAxisCount: Int
         let yAxisCount: Int
-        
         var ctl: Ctl
-        if _from.count >= _to.count {
-            xAxisPointer = UnsafeMutablePointer(mutating: _to)
-            yAxisPointer = UnsafeMutablePointer(mutating: _from)
-            xAxisCount = _to.count
-            yAxisCount = _from.count
+        if flattenFrom.count >= flattenTo.count {
+            xAxisPointer = UnsafeMutablePointer(mutating: flattenTo)
+            yAxisPointer = UnsafeMutablePointer(mutating: flattenFrom)
+            xAxisCount = flattenTo.count
+            yAxisCount = flattenFrom.count
             ctl = Ctl(reverse: true, path: UnsafeMutablePointer<Int>.allocate(capacity: 0), pathPosition: [:])
         } else {
-            xAxisPointer = UnsafeMutablePointer(mutating: _from)
-            yAxisPointer = UnsafeMutablePointer(mutating: _to)
-            xAxisCount = _from.count
-            yAxisCount = _to.count
+            xAxisPointer = UnsafeMutablePointer(mutating: flattenFrom)
+            yAxisPointer = UnsafeMutablePointer(mutating: flattenTo)
+            xAxisCount = flattenFrom.count
+            yAxisCount = flattenTo.count
             ctl = Ctl(reverse: false, path: UnsafeMutablePointer<Int>.allocate(capacity: 0), pathPosition: [:])
         }
         let offset = xAxisCount + 1
