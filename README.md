@@ -251,14 +251,14 @@ Wu's algorithm is recommended in this library. The actual speed depends on the n
 - from 100 items to 100 items (10 addition and 10 deletion), avg: 0.001 sec
 - from 100 items to 200 items (100 addition), avg: 0.001 ms
 - from 100 items to 100 items (50 addition and 50 deletion), avg: 0.001 sec
-- from 1000 items to 1050 items (50 addition), avg: 0.004 sec
-- from 1000 items to 1000 items (25 addition and 25 deletion), avg: 0.004 sec
-- from 1000 items to 1200 items (200 addition), avg: 0.004 sec
-- from 1000 items to 1000 items (100 addition and 100 deletion), avg: 0.09 sec
-- from 10000 items to 10100 items (100 addition), avg: 0.034 sec
-- from 10000 items to 10000 items (50 addition and 50 deletion), avg: 0.039 sec
-- from 10000 items to 12000 items (2000 addition), avg: 0.036 sec
-- from 10000 items to 10000 items (1000 addition and 1000 deletion), avg: 0.056 sec
+- from 1000 items to 1050 items (50 addition), avg: 0.003 sec
+- from 1000 items to 1000 items (25 addition and 25 deletion), avg: 0.003 sec
+- from 1000 items to 1200 items (200 addition), avg: 0.003 sec
+- from 1000 items to 1000 items (100 addition and 100 deletion), avg: 0.08 sec
+- from 10000 items to 10100 items (100 addition), avg: 0.031 sec
+- from 10000 items to 10000 items (50 addition and 50 deletion), avg: 0.032 sec
+- from 10000 items to 12000 items (2000 addition), avg: 0.033 sec
+- from 10000 items to 10000 items (1000 addition and 1000 deletion), avg: 0.055 sec
 
 Test Case is [here](https://github.com/kazuhiro4949/EditDistance/blob/master/EditDistanceTests/WuTests.swift). You can take reexamination with them.
 
