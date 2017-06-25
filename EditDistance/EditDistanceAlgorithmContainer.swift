@@ -24,7 +24,7 @@
 
 import Foundation
 
-public struct EditDistanceAlgorithmContainer<T: Comparable>: Equatable {
+public struct EditDistanceAlgorithmContainer<T: Equatable>: Equatable {
     public let indexPath: IndexPath
     public let element: T
     
@@ -41,7 +41,7 @@ public struct EditDistanceAlgorithmContainer<T: Comparable>: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==<T: Comparable>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
+    public static func ==<T: Equatable>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
         return lhs.element == rhs.element
     }
 }

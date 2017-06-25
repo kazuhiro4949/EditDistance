@@ -26,14 +26,14 @@ import Foundation
 
 /// protocol that concrete classes follow it to calculate edit distance.
 public protocol EditDistanceAlgorithm {
-    associatedtype Element: Comparable
+    associatedtype Element: Equatable
     
     func calculate(from: [[Element]], to: [[Element]]) -> EditDistanceContainer<Element>
 }
 
 
 /// Type-erased EditDistanceAlgorithm to implement an instant algorithm.
-public struct AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Comparable {
+public struct AnyEditDistanceAlgorithm<T>: EditDistanceAlgorithm where T: Equatable {
 
     public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
         return _calc(from, to)

@@ -44,7 +44,7 @@ import Foundation
 /// ```
 /// editDistance.calculate() // [.common("Francis", [0, 0]), .common("Woodruff", [0, 1]), .add("Stanton", [0, 2])]
 /// ```
-public struct EditDistance<T: Comparable> {
+public struct EditDistance<T: Equatable> {
     private let _from: [[T]]
     private let _to: [[T]]
     
@@ -88,9 +88,9 @@ public struct EditDistance<T: Comparable> {
     }
 }
 
-/// proxy type to Array<T: Comparable>.
+/// proxy type to Array<T: Equatable>.
 /// It receives a starting array, after that evaluate resutls with destination array and an algorithm.
-public struct EditDistanceProxy<T: Comparable> {
+public struct EditDistanceProxy<T: Equatable> {
     private let _generator: ([T]) -> EditDistance<T>
     
     
@@ -127,7 +127,7 @@ public struct EditDistanceProxy<T: Comparable> {
 
 
 // MARK: - Array Extension
-public extension Array where Element: Comparable {
+public extension Array where Element: Equatable {
     
     /// namespace for EditDistance. create EditDistanceProxy object with self.
     public var diff: EditDistanceProxy<Element> {

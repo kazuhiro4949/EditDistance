@@ -26,7 +26,7 @@ import Foundation
 
 
 /// Dynamic Programming O(NM)
-public struct DynamicProgramming<T: Comparable>: EditDistanceAlgorithm {
+public struct DynamicProgramming<T: Equatable>: EditDistanceAlgorithm {
     public typealias Element = T
     
     public init() {}

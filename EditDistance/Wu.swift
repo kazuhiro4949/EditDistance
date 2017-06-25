@@ -28,7 +28,7 @@ import Foundation
 /// Wu's algorithm O(NP)
 ///
 /// inspired by (cubicdaiya/gonp)[https://github.com/cubicdaiya/gonp]
-public struct Wu<T: Comparable>: EditDistanceAlgorithm {
+public struct Wu<T: Equatable>: EditDistanceAlgorithm {
     public typealias Element = T
     
     public init() {}
@@ -148,7 +148,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return EditDistanceContainer(editScripts: traceBack(epc: epc, ctl: ctl, xAxis: xAxisPointer, yAxis: yAxisPointer))
     }
     
-    private func traceBack<T: Comparable>(epc: [Int: Point], ctl: Ctl, xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>) -> [EditScript<T>] {
+    private func traceBack<T: Equatable>(epc: [Int: Point], ctl: Ctl, xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>) -> [EditScript<T>] {
         var editScript = [EditScript<T>]()
         
         var pxIdx = 0, pyIdx = 0
@@ -195,7 +195,7 @@ public struct Wu<T: Comparable>: EditDistanceAlgorithm {
         return (r, max(lsP, rsP))
     }
     
-    private func snake<T: Comparable>(xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, xAxisCount: Int, yAxisCount: Int, k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
+    private func snake<T: Equatable>(xAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, yAxis: UnsafeMutablePointer<EditDistanceAlgorithmContainer<T>>, xAxisCount: Int, yAxisCount: Int, k: Int, y: Int, r: Int) -> (y: Int, point: Point?) {
         var y = y
         var x = y - k
         

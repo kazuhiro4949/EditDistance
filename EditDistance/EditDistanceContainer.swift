@@ -25,7 +25,7 @@
 import Foundation
 
 /// container object for edit distance calculation results
-public struct EditDistanceContainer<Element: Comparable> {
+public struct EditDistanceContainer<Element: Equatable> {
     public let editScripts: [EditScript<Element>]
     
     public init(editScripts: [EditScript<Element>]) {
@@ -38,7 +38,7 @@ public struct EditDistanceContainer<Element: Comparable> {
 /// - add: an element on the desitination array is added
 /// - common: element on two arrays is common
 /// - delete: an element on the starting array is deleted
-public enum EditScript<Element: Comparable>: Equatable {
+public enum EditScript<Element: Equatable>: Equatable {
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
