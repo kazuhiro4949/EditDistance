@@ -210,7 +210,7 @@ let container = current.diff.compare(to: next, with: algorithm)
 #### make a new algorithm class.
 ```swift
 //implements protocol
-public struct Wu<T: Comparable>: EditDistanceAlgorithm {
+public struct Wu<T: Equatable>: EditDistanceAlgorithm {
     public typealias Element = T
     
     public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
