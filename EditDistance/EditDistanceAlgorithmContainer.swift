@@ -41,7 +41,7 @@ public struct EditDistanceAlgorithmContainer<T: Equatable>: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==<T: Equatable>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
+    public static func ==<T>(lhs: EditDistanceAlgorithmContainer<T>, rhs: EditDistanceAlgorithmContainer<T>) -> Bool {
         return lhs.element == rhs.element
     }
 }
