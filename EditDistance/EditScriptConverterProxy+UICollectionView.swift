@@ -56,7 +56,7 @@ public extension EditScriptConverterProxy where Converter: UICollectionView {
                 completion?(finish)
             })
         } else {
-            performBatchUpdates(with: container, completion: completion)
+            _performBatchUpdates(with: container, completion: completion)
         }
     }
     
