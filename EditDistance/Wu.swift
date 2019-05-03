@@ -91,18 +91,18 @@ public struct Wu<T: Equatable>: EditDistanceAlgorithm {
         let size = xAxisCount + yAxisCount + 3
         
         let fpBuffer = UnsafeMutablePointer<Int>.allocate(capacity: size)
-        fpBuffer.initialize(to: -1, count: size)
+        fpBuffer.initialize(repeating: -1, count: size)
         defer {
-            fpBuffer.deallocate(capacity: size)
+            fpBuffer.deallocate()
         }
         
-        ctl.path.deallocate(capacity: size)
+        ctl.path.deallocate()
         ctl.path = UnsafeMutablePointer<Int>.allocate(capacity: size)
         defer {
-            ctl.path.deallocate(capacity: size)
+            ctl.path.deallocate()
         }
         
-        ctl.path.initialize(to: -1, count: size)
+        ctl.path.initialize(repeating: -1, count: size)
         ctl.pathPosition = [:]
 
         
