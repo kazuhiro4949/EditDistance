@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EditDistance"
-  s.version          = "0.8.1"
+  s.version          = "0.8.2"
   s.summary          = "Incremental update tool to UITableView and UICollectionView"
 
   s.description      = <<-DESC
