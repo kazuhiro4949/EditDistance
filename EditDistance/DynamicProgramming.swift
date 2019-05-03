@@ -33,13 +33,13 @@ public struct DynamicProgramming<T: Equatable>: EditDistanceAlgorithm {
     
     public func calculate(from: [[T]], to: [[T]]) -> EditDistanceContainer<T> {
         let flattendTo = to.enumerated().flatMap { (firstOffset, collection) in
-            return collection.enumerated().flatMap { (secondOffset, element) in
+            return collection.enumerated().compactMap { (secondOffset, element) in
                 return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
             }
         }
         
         let flattendFrom = from.enumerated().flatMap { (firstOffset, collection) in
-            return collection.enumerated().flatMap { (secondOffset, element) in
+            return collection.enumerated().compactMap { (secondOffset, element) in
                 return EditDistanceAlgorithmContainer(indexPath: IndexPath(row: secondOffset, section: firstOffset), element: element)
             }
         }
@@ -73,7 +73,7 @@ public struct DynamicProgramming<T: Equatable>: EditDistanceAlgorithm {
             }
         }
         
-        let commonElements = editScripts.flatMap { $0.element }
+        let commonElements = editScripts.compactMap { $0.element }
         
         do {
             flattendFrom.forEach { (container) in

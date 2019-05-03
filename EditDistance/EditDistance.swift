@@ -130,7 +130,7 @@ public struct EditDistanceProxy<T: Equatable> {
 public extension Array where Element: Equatable {
     
     /// namespace for EditDistance. create EditDistanceProxy object with self.
-    public var diff: EditDistanceProxy<Element> {
+    var diff: EditDistanceProxy<Element> {
         return EditDistanceProxy(self)
     }
 }
