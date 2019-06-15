@@ -2,8 +2,8 @@
 //  EDCollectionViewDiffableDataSource.swift
 //  EditDistance
 //
-//  Created by kahayash on 6/15/1 R.
-//  Copyright © 1 Reiwa Kazuhiro Hayashi. All rights reserved.
+//  Created by Kazuhiro Hayashi on 6/15/1 R.
+//  Copyright © 2019 Kazuhiro Hayashi. All rights reserved.
 //
 
 import UIKit
